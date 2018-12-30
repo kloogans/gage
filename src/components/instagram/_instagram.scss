@@ -1,0 +1,42 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+@import './insta-user/insta-user';
+@import './insta-grid/insta-grid';
+
+.instagram {
+
+  &__container {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    height: 100%;
+  }
+
+  &__tabs {
+    @include flex(row, center, center);
+    width: 100%;
+    height: 30px;
+    padding: 7px 0;
+
+    button {
+      padding: 0;
+      margin: 20px 10px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  }
+
+  &__content-wrapper {
+    @include flex(column, flex-start, center);
+    @include size(100%, 100%);
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  &--active {
+    border-bottom: 2px solid lighten($black, 10%) !important;
+  }
+}

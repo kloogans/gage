@@ -1,0 +1,64 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+
+.insta-user {
+
+  &__image-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      width: 102px;
+      height: 102px;
+    }
+  }
+
+  &__username {
+    font-size: 0.9rem;
+    margin: 7px 0;
+  }
+
+  &__counts {
+    @include flex(row, center, center);
+    width: 100%;
+    list-style: none;
+    padding: 7px 0;
+    margin: 0;
+
+    li {
+      @include flex(column, center, center);
+      @include size(33.3333%, 70px);
+    }
+
+    p {
+      color: $black;
+      font-size: 0.8rem;
+
+      &:last-child {
+        flex: 1;
+        margin: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__engagement {
+    @include flex(column, center, center);
+    width: $app-width;
+    flex: 1;
+    background: linear-gradient(to left, #06defc 0%, #fc06c6 100%);
+
+    p {
+      font-size: 0.8rem;
+      color: white;
+
+      &:last-child {
+        flex: 1;
+        font-size: 2rem;
+        margin: 0;
+      }
+    }
+  }
+}

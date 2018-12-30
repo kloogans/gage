@@ -1,0 +1,12 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+@import './grid-item/grid-item';
+
+.insta-grid {
+
+  &__container {
+    @include flex(row, center, center);
+    width: 500px;
+    flex-wrap: wrap;
+  }
+}

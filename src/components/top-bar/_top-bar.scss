@@ -1,0 +1,43 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+.top-bar {
+
+  &__wrapper {
+    @include flex(row, space-between, center);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: $app-width;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background-color: white;
+    z-index: 20;
+    // border-bottom: 1px solid black;
+
+    h1 {
+      @include flex(row, center, center);
+      margin: 0;
+      font-family: $font-family--display;
+      color: $black;
+      font-size: 1.8rem;
+      flex: 1;
+      margin-left: 31.61px;
+      padding-bottom: 5px;
+    }
+
+    button {
+      color: $black;
+      font-size: 1.1rem;
+      transform-origin: center;
+      transition: all 0.3s ease;
+
+      &:focus,
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

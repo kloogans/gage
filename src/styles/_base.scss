@@ -1,0 +1,12 @@
+@import './utils/mixins';
+@import './utils/variables';
+@import './utils/animations';
+
+// Components
+@import '../components/top-bar/top-bar';
+@import '../components/instagram/instagram';
+@import '../components/menu/menu';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Satisfy|Roboto:100,300,400');
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
