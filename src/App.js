@@ -17,6 +17,8 @@ const App = observer(
       store.checkPreviousAuth()
     }
 
+
+
     checkLocalStorage = () => {
       const local = localStorage.getItem('access_token')
       if(local && local.length) {
@@ -31,6 +33,7 @@ const App = observer(
             <div className='app__inner'>
               <TopBar />
               <Menu />
+              <div ref='scroll' />
               <main className='app__content'>
                 {
                   store.authenticated

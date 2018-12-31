@@ -23,6 +23,8 @@ class Store {
   access_token = ''
   login_url = `https://api.instagram.com/oauth/authorize/?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=token`
 
+  hide_tabs = false
+
   toggle = {
     user: true,
     grid: false,
@@ -177,6 +179,8 @@ class Store {
     this.authenticated = false
   }
 
+  scrollToTop = () => window.scroll({ top: 0, behavior: 'smooth' })
+
   formatNum = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
@@ -189,6 +193,7 @@ decorate(Store, {
   user_global_rate: observable,
   user_global_percent: observable,
   callback_url: observable,
+  hide_tabs: observable,
   toggle: observable,
   getPostData: action,
   checkPreviousAuth: action,
