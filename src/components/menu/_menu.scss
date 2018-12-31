@@ -18,7 +18,8 @@
     @include flex(column, center, center);
     @include size(100%, 100%);
     max-width: 768px;
-    background-color: blue;
+    background: linear-gradient(-130deg, $blue, $pink);
+    background-size: 130% 100%;
     color: white;
   }
 
@@ -32,6 +33,10 @@
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 30;
+
+    @media (max-width: 768px) {
+      padding: 0 7px
+    }
 
     button {
       color: white;
@@ -51,19 +56,23 @@
 
     button {
       width: 100%;
-      max-width: 350px;
-      background: #008cff;
+      max-width: 300px;
+      background: transparent;
+      text-align: center;
       font-family: $font-family--main;
+      font-size: 1rem;
       font-weight: $font--thick;
       color: white;
-      font-size: 1.1rem;
       padding: 15px 0;
+      border: 2px solid white;
       border-radius: 3px;
+      text-transform: lowercase;
       transition: all 0.3s ease;
 
       &:focus,
       &:hover {
-        background: lighten(#008cff, 10%);
+        border-color: $blue;
+        color: $blue;
       }
     }
   }

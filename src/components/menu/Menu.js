@@ -16,8 +16,7 @@ const Menu = observer(
             </div>
             <div className='menu__logout'>
               <button onClick={store.handleLogout}>
-                <i className='fas fa-external-link-alt' />
-                &nbsp;Logout
+                Logout
               </button>
             </div>
           </div>

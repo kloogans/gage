@@ -67,11 +67,13 @@ const InstaUser = observer(
                       strokeWidth={1}
                       className='progress-ring__circle-chart'
                       styles={{
-                        path: { stroke: '#fff' }
+                        path: { stroke: 'rgba(255,255,255,0.4)' }
                       }} />
                     <div className='rating__text animate__fade-in'>
-                      <CountUp end={Number(store.user_global_rate)} duration={2} decimals={2} />
-                      <sup>/5</sup>
+                      <div className='rate-number'>
+                        <CountUp end={Number(store.user_global_rate)} duration={2} decimals={2} />
+                        <sup>/5</sup>
+                      </div>
                     </div>
                   </div>
 

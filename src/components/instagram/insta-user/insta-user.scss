@@ -66,6 +66,10 @@
       p {
         margin: 0 0 5px 0;
         text-transform: lowercase;
+
+        @media (max-width: 414px) {
+          margin-bottom: 2px;
+        }
       }
 
       p:nth-child(2) {
@@ -112,9 +116,10 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
         width: 100%;
-        @include flex(row, center, center);
+        @include flex(row, flex-start, center);
 
         p {
           font-family: $font-family--main;
@@ -130,6 +135,16 @@
       font-size: 4rem;
       letter-spacing: -4px;
       margin: 0;
+    }
+
+    .rate-number {
+      position: relative;
+      @include flex(row, center, center);
+      padding-right: 13px;
+
+      @media (min-width: 768px) and (min-height: 1024px) {
+        padding-right: 20px;
+      }
     }
 
     p {
@@ -161,16 +176,46 @@
     letter-spacing: -1px;
 
     sup {
+      position: absolute;
+      top: 12%;
+      right: 0;
+      color: transparentize(white, 0.3);
       font-size: 0.95rem;
       font-weight: $font--medium;
-      margin-bottom: 20px;
     }
 
     @media (max-height: 640px) {
+      span {
+        font-size: 3rem;
+      }
+
+      sup {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 768px) and (min-height: 1024px) {
+      span {
+        font-size: 6rem;
+      }
+
+      sup {
+        font-size: 1.9rem !important;
+      }
+    }
+
+    @media (max-width: 375px) {
       font-size: 1.6rem;
 
       sup {
         font-size: 0.8rem;
+      }
+    }
+    @media (max-width: 768px) {
+      font-size: 4rem;
+
+      sup {
+        font-size: 1.2rem;
       }
     }
   }
@@ -185,7 +230,7 @@
     max-height: 300px;
 
     @media (max-width: 768px) {
-      min-height: 173px;
+      min-height: 200px;
       margin-bottom: 20px;
     }
   }
@@ -196,16 +241,12 @@
   max-height: 170px;
   height: 100%;
 
-  @media (max-width: 768px) {
-    width: 50% !important;
-  }
-
-  @media (max-height: 667px) {
-    max-height: 128px;
-  }
-
   @media (max-height: 640px) {
-    max-height: 100px;
+    max-height: 150px;
+  }
+
+  @media (min-width: 768px) and (min-height: 1024px) {
+    max-height: 300px;
   }
 }
 

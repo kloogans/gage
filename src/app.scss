@@ -13,14 +13,18 @@ body,
   // overflow-x: hidden;
 }
 
-#root {
+body,
+#root,
+.app__wrapper,
+.app__inner {
     -ms-overflow-style: none;  // IE 10+
     overflow: -moz-scrollbars-none;  // Firefox
+
+    &::-webkit-scrollbar {
+      display: none;  // Safari and Chrome
+    }
 }
 
-#root::-webkit-scrollbar {
-    display: none;  // Safari and Chrome
-}
 
 .app {
 
