@@ -4,10 +4,12 @@ import { observer } from 'mobx-react'
 
 const TopBar = observer(() => (
     <div className='top-bar__wrapper'>
-      <h1>gage</h1>
-      <button onClick={store.toggleMenu}>
-        <i className='fas fa-cog' />
-      </button>
+      <div className='top-bar__inner'>
+        <h1>gage</h1>
+        <button onClick={store.toggleMenu}>
+          <i className='fas fa-cog' />
+        </button>
+      </div>
     </div>
   )
 )

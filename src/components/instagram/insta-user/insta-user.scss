@@ -15,9 +15,27 @@
     }
   }
 
+  &__profile-photo {
+    @include flex(column, center, center);
+    width: 100%;
+    background-color: lighten($black, 75%);
+    padding: 15px 0;
+  }
+
+  &__stats {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    flex: 1;
+    // padding-top: 50px;
+    box-sizing: border-box;
+  }
+
   &__username {
     font-size: 0.9rem;
     margin: 7px 0;
+    font-family: $font-family--main;
+    font-weight: $font--medium;
+    color: $black;
   }
 
   &__counts {
@@ -46,19 +64,152 @@
 
   &__engagement {
     @include flex(column, center, center);
-    width: $app-width;
+    position: relative;
+    width: 100%;
     flex: 1;
-    background: linear-gradient(to left, #06defc 0%, #fc06c6 100%);
+    padding: 10px 0;
+    border-radius: 3px;
+    background: linear-gradient(290deg, #06defc 0%, #fc06c6 100%);
+    background-size: 500% 100%;
+    animation: warpedBackground 30s ease infinite;
 
-    p {
-      font-size: 0.8rem;
-      color: white;
+    .engagement-rate {
+      text-align: center;
 
-      &:last-child {
-        flex: 1;
-        font-size: 2rem;
-        margin: 0;
+      &__bottom-group {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px 0;
+        width: 100%;
+        @include flex(row, center, center);
+
+        p {
+          font-family: $font-family--main;
+          color: white;
+          font-size: 0.9rem;
+          font-weight: $font--thick;
+        }
       }
     }
+
+    .rate {
+      flex: 1;
+      font-size: 4rem;
+      letter-spacing: -4px;
+      margin: 0;
+    }
+
+    p {
+      @include flex(row, center, center);
+      font-size: 0.8rem;
+      font-family: $font-family--main;
+      color: white;
+      margin: 0;
+    }
   }
+}
+
+.rating {
+
+  &__container {
+    @include flex(column, center, center);
+    position: relative;
+    flex: 1;
+  }
+
+  &__text {
+    position: absolute;
+    @include flex(row, center, center);
+    @include size(100%, 100%);
+    color: white;
+    font-family: $font-family--main;
+    font-size: 2.5rem;
+    font-weight: $font--thin;
+
+    sup {
+      font-size: 0.85rem;
+      font-weight: $font--thick;
+    }
+  }
+
+}
+
+.progress-ring {
+
+  &__container {
+    @include flex(row, center, center);
+    min-height: 203px;
+    max-height: 300px;
+
+    @media (max-width: 768px) {
+      min-height: 173px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__circle-container {
+
+    @media (max-width: 768px) {
+      width: 100vw;
+      @include flex(row, flex-end, center);
+    }
+  }
+
+  &__circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    stroke: transparent;
+    z-index: 10;
+
+    @media (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+
+    text {
+      // fill: #00a1f0 !important;
+    }
+  }
+
+  &__text {
+    font-family: $font-family--main;
+    font-size: 3rem;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      margin-left: 20px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 3.2rem;
+      color: $black;
+    }
+  }
+}
+
+.CircularProgressbar {
+  width: 100% !important;
+  max-height: 150px;
+  height: 100%;
+
+  @media (max-width: 768px) {
+    width: 50% !important;
+  }
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: transparent !important;
+  z-index: 10;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  // stroke: #00a1f0 !important;
+  z-index: 10;
 }

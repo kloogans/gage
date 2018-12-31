@@ -8,7 +8,8 @@ html,
 body,
 #root {
   width: $app-width;
-  height: $app-height;
+  min-height: $app-height;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -27,6 +28,12 @@ body,
     width: 100%;
     height: 100%;
     @include flex(column, center, center);
+  }
+
+  &__inner {
+    @include flex(column, center, center);
+    width: 100%;
+    max-width: 768px;
   }
 
   &__content {

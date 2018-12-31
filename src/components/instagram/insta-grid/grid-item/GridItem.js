@@ -3,12 +3,13 @@ import React, { Component } from 'react'
   class GridItem extends Component {
 
     render() {
-      const item = {...this.props}
-      const engagement = ((item.likes + item.comments) / item.followers) * 100
-      console.log(engagement)
+      const item = {...this.props},
+            engagement = ((item.likes + item.comments) / item.followers) * 100
       return (
         <div className='grid-item__container'>
-          <img src={item.imgUrl} />
+          <div className='grid-item__image'>
+            <img src={item.imgUrl} alt={'A photo by ' + item.username} />
+          </div>
           <div className='grid-item__analytics'>
             <p className='engagement-title'>
               {(engagement).toFixed(2)}%

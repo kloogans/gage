@@ -13,10 +13,12 @@ const Instagram = observer(
         return (
           <div className='instagram__container animate__fade-in'>
             <div className='instagram__tabs'>
-              <button className={store.toggle.user ? 'instagram--active' : null} onClick={store.toggleInstaUser}>
+              <button className={store.toggle.user ? 'instagram--active' : null}
+                      onClick={store.toggleInstaUser}>
                 Profile
               </button>
-              <button className={store.toggle.grid ? 'instagram--active' : null} onClick={store.toggleInstaGrid}>
+              <button className={store.toggle.grid ? 'instagram--active' : null}
+                      onClick={store.toggleInstaGrid}>
                 Media
               </button>
             </div>

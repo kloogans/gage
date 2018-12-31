@@ -8,10 +8,17 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: $app-width;
+    width: 100%;
     height: $app-height;
-    background-color: blue;
     z-index: 20;
+  }
+
+  &__inner {
+    position: relative;
+    @include flex(column, center, center);
+    @include size(100%, 100%);
+    max-width: 768px;
+    background-color: blue;
     color: white;
   }
 
@@ -43,13 +50,21 @@
     width: 100%;
 
     button {
-      width: 75%;
-      background: rgb(0, 140, 255);
+      width: 100%;
+      max-width: 350px;
+      background: #008cff;
       font-family: $font-family--main;
-      font-weight: $font--medium;
+      font-weight: $font--thick;
       color: white;
       font-size: 1.1rem;
-      padding: 10px 0;
+      padding: 15px 0;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+
+      &:focus,
+      &:hover {
+        background: lighten(#008cff, 10%);
+      }
     }
   }
 }

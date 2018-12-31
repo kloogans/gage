@@ -4,18 +4,22 @@
 .top-bar {
 
   &__wrapper {
-    @include flex(row, space-between, center);
+    @include flex(row, center, center);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    max-width: $app-width;
     height: 50px;
     padding: 0 20px;
     box-sizing: border-box;
     background-color: white;
     z-index: 20;
-    // border-bottom: 1px solid black;
+  }
+
+  &__inner {
+    @include flex(row, space-between, center);
+    width: 100%;
+    max-width: 768px;
 
     h1 {
       @include flex(row, center, center);

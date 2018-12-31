@@ -1,0 +1,45 @@
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/variables';
+
+
+.login {
+
+  &__container {
+    @include flex(column, center, center);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: $app-height;
+    background: linear-gradient(130deg, rgb(1, 225, 255) 0%, rgb(255, 1, 138) 100%);
+    background-size: 500% 100%;
+    animation: warpedBackground 30s ease infinite;
+    z-index: 50;
+
+    h1 {
+      font-family: $font-family--display;
+      color: $black;
+      font-size: 3.5rem;
+    }
+
+    a {
+      padding: 15px 30px;
+      background: transparent;
+      text-decoration: none;
+      font-family: $font-family--main;
+      font-size: 1rem;
+      font-weight: $font--thick;
+      color: white;
+      border: 2px solid white;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+
+      &:focus,
+      &:hover {
+        color: rgb(1, 225, 255);
+        border-color: rgb(1, 225, 255);
+      }
+    }
+  }
+}

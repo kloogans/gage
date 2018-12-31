@@ -16,6 +16,7 @@ const InstaGrid = observer(
         const images = data.map(post => {
           return <GridItem key={post.id}
                            followers={user_data.counts.followed_by}
+                           username={user_data.username}
                            comments={post.comments.count}
                            likes={post.likes.count}
                            imgUrl={post.images.standard_resolution.url}

@@ -8,6 +8,7 @@ const Loader = props => (
   		speed={2}
   		primaryColor="#f3f3f3"
   		secondaryColor="#ecebeb"
+      className='animate__fade-in'
   		{...props}
   	>
   		<rect x="137" y="143" rx="4" ry="4" width="117" height="6.4" />

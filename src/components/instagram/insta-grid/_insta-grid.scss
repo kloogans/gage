@@ -6,7 +6,7 @@
 
   &__container {
     @include flex(row, center, center);
-    width: 500px;
+    width: 100%;
     flex-wrap: wrap;
   }
 }
