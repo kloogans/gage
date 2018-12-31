@@ -46,9 +46,21 @@
     padding: 7px 0;
     margin: 0;
 
+    @media (max-height: 640px) {
+      min-height: 40px;
+    }
+
     li {
       @include flex(column, center, center);
-      @include size(33.3333%, 70px);
+      @include size(33.3333%, 100%);
+
+      p {
+        margin: 0 0 5px 0;
+      }
+
+      p:nth-child(2) {
+        flex: 1;
+      }
     }
 
     p {
@@ -59,6 +71,10 @@
         flex: 1;
         margin: 0;
         font-size: 1rem;
+
+        @media (max-width: 768px) {
+          font-size: 0.94rem;
+        }
       }
     }
   }
@@ -139,6 +155,14 @@
       font-weight: $font--medium;
       margin-bottom: 20px;
     }
+
+    @media (max-height: 640px) {
+      font-size: 1.6rem;
+
+      sup {
+        font-size: 0.8rem;
+      }
+    }
   }
 
 }
@@ -164,6 +188,14 @@
 
   @media (max-width: 768px) {
     width: 50% !important;
+  }
+
+  @media (max-height: 667px) {
+    max-height: 128px;
+  }
+
+  @media (max-height: 640px) {
+    max-height: 100px;
   }
 }
 

@@ -11,6 +11,10 @@
     animation: fade-in--up 0.8s ease;
     animation-fill-mode: both;
 
+    @media (max-width: 399px) {
+      max-height: 100%;
+    }
+
     &:focus,
     &:hover {
       .grid-item__analytics {
@@ -32,6 +36,15 @@
       color: $black;
       font-size:0.9rem;
       object-fit: cover;
+
+      @media (max-width: 399px) {
+        min-height: 185px;
+        min-width: 185px;
+      }
+
+      @media (max-width: 369px) {
+        min-height: 100%;
+      }
     }
 
     .engagement-title {
@@ -50,6 +63,14 @@
     max-height: 200px;
     width: 100%;
     overflow: hidden;
+
+    @media (max-width: 399px) {
+      max-height: 185px;
+    }
+
+    @media (max-width: 369px) {
+      max-height: 100%;
+    }
   }
 
   &__analytics {
