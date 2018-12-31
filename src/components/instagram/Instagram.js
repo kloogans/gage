@@ -9,7 +9,7 @@ const Instagram = observer(
   class Instagram extends Component {
 
     render() {
-      if (store.instagram_post_data && store.instagram_user_data) {
+      if (store.instagram_post_data && store.instagram_user_data && false) {
         return (
           <div className='instagram__container animate__fade-in'>
             <div className='instagram__tabs'>

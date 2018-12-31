@@ -126,10 +126,12 @@
     font-family: $font-family--main;
     font-size: 2.5rem;
     font-weight: $font--thin;
+    letter-spacing: -1px;
 
     sup {
-      font-size: 0.85rem;
-      font-weight: $font--thick;
+      font-size: 0.95rem;
+      font-weight: $font--medium;
+      margin-bottom: 20px;
     }
   }
 
@@ -147,56 +149,11 @@
       margin-bottom: 20px;
     }
   }
-
-  &__circle-container {
-
-    @media (max-width: 768px) {
-      width: 100vw;
-      @include flex(row, flex-end, center);
-    }
-  }
-
-  &__circle {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    stroke: transparent;
-    z-index: 10;
-
-    @media (max-width: 768px) {
-      width: 150px;
-      height: 150px;
-    }
-
-    text {
-      // fill: #00a1f0 !important;
-    }
-  }
-
-  &__text {
-    font-family: $font-family--main;
-    font-size: 3rem;
-    color: white;
-    text-align: left;
-    margin: 0;
-    padding: 0;
-
-    @media (max-width: 768px) {
-      margin-left: 20px;
-    }
-
-    span {
-      font-weight: 600;
-      font-size: 3.2rem;
-      color: $black;
-    }
-  }
 }
 
 .CircularProgressbar {
   width: 100% !important;
-  max-height: 150px;
+  max-height: 170px;
   height: 100%;
 
   @media (max-width: 768px) {

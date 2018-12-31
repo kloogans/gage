@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import store from '../../../stores/store'
 import * as mobx from 'mobx'
+import CountUp from 'react-countup'
 import CircularProgressbar from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
@@ -31,7 +32,7 @@ const InstaUser = observer(
               data= ig.data,
               stats = store.user_stats
         return (
-          <div className='app__section'>
+          <div className='app__section animate__fade-in--long'>
             <div className='insta-user__profile-photo'>
               <div className='insta-user__image-wrapper'>
                 <img src={data.profile_picture} />
@@ -59,8 +60,6 @@ const InstaUser = observer(
               </ul>
               <div className='insta-user__engagement'>
                 <div className='engagement-rate'>
-                  {/* <p>Engagement</p>
-                  <p className='rate'>{stats.engagement_avg}%</p> */}
                   <div className='rating__container'>
                     <CircularProgressbar
                       percentage={store.user_global_percent}
@@ -70,9 +69,9 @@ const InstaUser = observer(
                       styles={{
                         path: { stroke: '#fff' }
                       }} />
-                    <div className='rating__text'>
-                      {store.user_global_rate}
-                      <sup>&nbsp;/5</sup>
+                    <div className='rating__text animate__fade-in'>
+                      <CountUp end={Number(store.user_global_rate)} duration={2} decimals={2} />
+                      <sup>/5</sup>
                     </div>
                   </div>
 
@@ -91,12 +90,12 @@ const InstaUser = observer(
                   <p>{stats.likes_avg}</p>
                 </li>
                 <li>
-                  <p><i className='fas fa-comment' /></p>
-                  <p>{stats.comments_avg}</p>
-                </li>
-                <li>
                   <p>Total <i className='fas fa-heart' title='Total Likes' /></p>
                   <p>{stats.likes_total}</p>
+                </li>
+                <li>
+                  <p><i className='fas fa-comment' /></p>
+                  <p>{stats.comments_avg}</p>
                 </li>
                 <li>
                   <p>Total <i className='fas fa-comment' title='Total Comments' /></p>
