@@ -28,7 +28,6 @@
       color: $black;
       font-size: 1.8rem;
       flex: 1;
-      margin-left: 31.61px;
       padding-bottom: 5px;
     }
 
@@ -37,6 +36,10 @@
       font-size: 1.1rem;
       transform-origin: center;
       transition: all 0.3s ease;
+
+      &:first-child {
+        opacity: 0;
+      }
 
       &:focus,
       &:hover {

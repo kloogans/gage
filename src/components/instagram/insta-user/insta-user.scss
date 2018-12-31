@@ -67,13 +67,17 @@
     @include flex(column, center, center);
     position: relative;
     width: 100%;
-    min-height: 327px;
+    height: 100%;
     flex: 1;
     padding: 10px 0;
     border-radius: 3px;
     background: linear-gradient(290deg, #06defc 0%, #fc06c6 100%);
     background-size: 500% 100%;
     animation: warpedBackground 30s ease infinite;
+
+    @media screen and (orientation:landscape) {
+      min-height: 327px;
+    }
 
     .engagement-rate {
       text-align: center;

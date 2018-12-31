@@ -19,20 +19,24 @@
     h1 {
       font-family: $font-family--display;
       color: $black;
-      font-size: 3.5rem;
+      font-size: 4rem;
     }
 
     a {
+      @include flex(row, center, center);
+      min-width: 171px;
+      margin: 0 10px;
       padding: 15px 30px;
       background: transparent;
-      text-decoration: none;
+      border: 2px solid white;
+      border-radius: 3px;
+      text-align: center;
       font-family: $font-family--main;
       font-size: 1rem;
       font-weight: $font--thick;
       color: white;
-      border: 2px solid white;
+      text-decoration: none;
       text-transform: uppercase;
-      border-radius: 3px;
       transition: all 0.3s ease;
 
       &:focus,
@@ -40,6 +44,22 @@
         color: rgb(1, 225, 255);
         border-color: rgb(1, 225, 255);
       }
+
+      @media (max-width: 768px) {
+        margin: 7px 0;
+      }
+
+      span {
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  &__buttons {
+    @include flex(row, center, center);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
   }
 }

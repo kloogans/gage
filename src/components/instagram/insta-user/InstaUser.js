@@ -90,7 +90,7 @@ const InstaUser = observer(
                   <p>{stats.likes_avg}</p>
                 </li>
                 <li>
-                  <p>Total <i className='fas fa-heart' title='Total Likes' /></p>
+                  <p>Total</p>
                   <p>{stats.likes_total}</p>
                 </li>
                 <li>
@@ -98,7 +98,7 @@ const InstaUser = observer(
                   <p>{stats.comments_avg}</p>
                 </li>
                 <li>
-                  <p>Total <i className='fas fa-comment' title='Total Comments' /></p>
+                  <p>Total</p>
                   <p>{stats.comments_total}</p>
                 </li>
               </ul>

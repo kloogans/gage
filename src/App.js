@@ -7,6 +7,7 @@ import Instagram from './components/instagram/Instagram'
 import Login from './components/login/Login'
 import Loader from './components/loader/Loader'
 import Menu from './components/menu/Menu'
+import Div100vh from 'react-div-100vh'
 import './app.scss'
 
 const App = observer(
@@ -25,19 +26,21 @@ const App = observer(
     }
     render() {
       return (
-        <div className='app__wrapper'>
-          <div className='app__inner'>
-            <TopBar />
-            <Menu />
-            <main className='app__content'>
-              {
-                store.authenticated
-                  ? <Instagram />
-                  : <Login />
-              }
-            </main>
+        <Div100vh>
+          <div className='app__wrapper'>
+            <div className='app__inner'>
+              <TopBar />
+              <Menu />
+              <main className='app__content'>
+                {
+                  store.authenticated
+                    ? <Instagram />
+                    : <Login />
+                }
+              </main>
+            </div>
           </div>
-        </div>
+        </Div100vh>
       )
     }
   }

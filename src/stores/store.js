@@ -19,8 +19,9 @@ class Store {
   user_global_rate = 0
 
   client_id = '03de2ea241a2417f867fc912cba0479c'
-  access_token = '2140277165.03de2ea.de20310187d1444d8403188077f8a6d7'
-  login_url = `https://api.instagram.com/oauth/authorize/?client_id=${this.client_id}&redirect_uri=http://localhost:3002&response_type=token`
+  redirect_uri = 'https://testing.jamesobrien.io'
+  access_token = ''
+  login_url = `https://api.instagram.com/oauth/authorize/?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=token`
 
   toggle = {
     user: true,
@@ -85,6 +86,11 @@ class Store {
       if (data) {
         const insta_data = await data.json()
         this.instagram_user_data = insta_data
+        if (insta_data.meta.code === 400) {
+          this.authenticated = false
+          this.access_token = null
+          localStorage.setItem('access_token', '')
+        }
       }
     } catch(e) {
       console.error('WRONG', e)
