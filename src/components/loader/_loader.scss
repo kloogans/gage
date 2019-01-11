@@ -69,15 +69,14 @@
       16% {transform:scale(0.55, 0.5) translate(-80px, 0);}
       33% {transform:scale(0.8) translate(0, 0);}
       50% {transform:scale(1.0) translate(0, 0); background-color: $purple;}
-      88% {transform:scale(1) translate(0, 0);}
+      // 88% {transform:scale(1) translate(0, 0);}
       100% { transform:scale(1.0) translate(0, 0); background-color: $pink; }
     }
 
     @keyframes apester {
       0% {transform:scale(1.0); opacity:1;}
-      20% {transform:scale(1.0); opacity:0;}
       40% {transform:scale(0.5); opacity:0;}
-      66% {transform:scale(0.8); opacity:1;}
+      80% {transform:scale(0.9); opacity:1;}
       100% {transform:scale(1.0); opacity:1;}
     }
 

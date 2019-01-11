@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import store from '../../stores/store'
+import instagram from '../instagram/stores/instagram'
 
 const Menu = observer(
   class Menu extends Component {
@@ -14,9 +16,37 @@ const Menu = observer(
                 <i className='fas fa-times' />
               </button>
             </div>
-            <div className='menu__logout'>
-              <button onClick={store.handleLogout}>
-                Logout
+            <div className='menu__buttons'>
+              {
+                instagram.authenticated
+                  ? (
+                    <button onClick={() => store.pushNewRoute('instagram')}>
+                      Instagram
+                    </button>
+                  ) : null
+              }
+              {
+                instagram.authenticated
+                  ? (
+                    <button onClick={() => store.pushNewRoute('facebook')}>
+                      Facebook
+                    </button>
+                  ) : null
+              }
+              {
+                instagram.authenticated
+                  ? (
+                    <button onClick={() => store.pushNewRoute('twitter')}>
+                      Twitter
+                    </button>
+                  ) : null
+              }
+
+              <button>
+                Accounts
+              </button>
+              <button onClick={instagram.handleLogout}>
+                Logout All
               </button>
             </div>
           </div>

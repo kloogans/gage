@@ -50,11 +50,11 @@
     }
   }
 
-  &__logout {
-    @include flex(row, center, center);
+  &__buttons {
+    @include flex(column, center, center);
     width: 100%;
 
-    button {
+    button, a {
       width: 100%;
       max-width: 300px;
       background: transparent;
@@ -64,6 +64,7 @@
       font-weight: $font--thick;
       color: white;
       padding: 15px 0;
+      margin: 5px 0;
       border: 2px solid white;
       border-radius: 3px;
       text-transform: lowercase;

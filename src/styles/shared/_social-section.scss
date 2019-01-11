@@ -1,0 +1,121 @@
+@import '../utils/mixins';
+@import '../utils/variables';
+
+.social {
+
+  &__container {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    height: calc(100vh - 50px);
+  }
+
+  &__content-wrapper {
+    @include flex(column, flex-start, center);
+    @include size(100%, 100%);
+    padding: 10px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      padding: 10px 0 0 0;
+    }
+  }
+
+  &__image-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    img {
+      width: 102px;
+      height: 102px;
+    }
+  }
+
+  &__profile-photo {
+    @include flex(column, center, center);
+    width: 100%;
+    background-color: lighten($black, 75%);
+    padding: 15px 0;
+  }
+
+  &__stats {
+    @include flex(column, flex-start, center);
+    width: 100%;
+    flex: 1;
+    // padding-top: 50px;
+    box-sizing: border-box;
+  }
+
+  &__username {
+    font-size: 0.9rem;
+    margin: 7px 0;
+    font-family: $font-family--main;
+    font-weight: $font--medium;
+    color: $black;
+  }
+
+  &__counts {
+    @include flex(row, center, center);
+    width: 100%;
+    min-height: 70px;
+    list-style: none;
+    padding: 7px 0;
+    margin: 0;
+
+    &:last-child {
+
+      p {
+        font-size: 0.7rem;
+        color: transparentize($black, 0.4);
+
+        &:last-child {
+          font-size: 0.9rem;
+        }
+      }
+
+      li {
+        &:nth-child(2) {
+          border-right: 1px solid transparentize($black, 0.75);
+        }
+      }
+    }
+
+    @media (max-height: 640px) {
+      min-height: 40px;
+    }
+
+    li {
+      @include flex(column, center, center);
+      @include size(33.3333%, 100%);
+
+      p {
+        margin: 0 0 5px 0;
+        text-transform: lowercase;
+
+        @media (max-width: 414px) {
+          margin-bottom: 2px;
+        }
+      }
+
+      p:nth-child(2) {
+        flex: 1;
+      }
+    }
+
+    p {
+      color: $black;
+      font-size: 0.8rem;
+
+      &:last-child {
+        flex: 1;
+        margin: 0;
+        font-size: 1rem;
+
+        @media (max-width: 768px) {
+          font-size: 0.94rem;
+        }
+      }
+    }
+  }
+}

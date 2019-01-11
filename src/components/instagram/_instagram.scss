@@ -1,7 +1,6 @@
 @import '../../styles/utils/mixins';
 @import '../../styles/utils/variables';
 
-@import './insta-user/insta-user';
 @import './insta-grid/insta-grid';
 
 .instagram {
@@ -10,36 +9,6 @@
     @include flex(column, flex-start, center);
     width: 100%;
     height: calc(100vh - 50px);
-  }
-
-  &__tabs {
-    @include flex(row, center, center);
-    width: 100%;
-    height: 30px;
-    padding: 7px 0;
-    transition: all 0.3s ease;
-
-    button {
-      padding: 0;
-      margin: 0 10px;
-      background: transparent;
-      border: none;
-      min-height: 38px;
-      outline: none;
-      font-family: $font-family--main;
-      font-weight: $font--thick;
-      font-size: 0.85rem;
-      text-transform: lowercase;
-      color: lighten($black, 20%);
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-
-      &:focus,
-      &:hover,
-      &:active {
-        color: lighten($black, 10%);
-      }
-    }
   }
 
   &__content-wrapper {
@@ -51,13 +20,5 @@
     @media (max-width: 768px) {
       padding: 10px 0 0 0;
     }
-  }
-
-  &--active {
-    border-bottom: 2px solid $blue !important;
-  }
-
-  &--active-pink {
-    border-bottom: 2px solid $pink !important;
   }
 }

@@ -18,13 +18,13 @@
 
     h1 {
       font-family: $font-family--display;
-      color: $black;
+      color: white;
       font-size: 4rem;
     }
 
-    a {
+    button {
       @include flex(row, center, center);
-      min-width: 171px;
+      min-width: 200px;
       margin: 0 10px;
       padding: 15px 30px;
       background: transparent;

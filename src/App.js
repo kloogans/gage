@@ -7,6 +7,7 @@ import Instagram from './components/instagram/Instagram'
 import Login from './components/login/Login'
 import Loader from './components/loader/Loader'
 import Menu from './components/menu/Menu'
+import Service from './containers/service/Service'
 import Div100vh from 'react-div-100vh'
 import './app.scss'
 
@@ -17,8 +18,6 @@ const App = observer(
       store.checkPreviousAuth()
     }
 
-
-
     checkLocalStorage = () => {
       const local = localStorage.getItem('access_token')
       if(local && local.length) {
@@ -26,6 +25,7 @@ const App = observer(
         store.authenticated = true
       }
     }
+
     render() {
       return (
         <Div100vh>
@@ -37,7 +37,19 @@ const App = observer(
               <main className='app__content'>
                 {
                   store.authenticated
-                    ? <Instagram />
+                    ? (
+                      <Router>
+                        <Switch>
+                          <Route exact path='/' render={() => {
+                            return <Service selected_service={'home'} />
+                          }} />
+
+                          <Route exact path='/instagram' render={() => {
+                            return <Service selected_service={'instagram'} />
+                          }} />
+                        </Switch>
+                      </Router>
+                    )
                     : <Login />
                 }
               </main>

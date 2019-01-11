@@ -2,13 +2,22 @@
 @import './utils/variables';
 @import './utils/animations';
 
+@import './shared/social-section';
+
 // Components
 @import '../components/top-bar/top-bar';
 @import '../components/instagram/instagram';
 @import '../components/menu/menu';
 @import '../components/login/login';
 @import '../components/loader/loader';
+@import '../components/nav-tabs/nav-tabs';
 @import '../components/footer/footer';
+@import '../components/dashboard/dashboard';
+
+@import '../components/shared/rating-ring/rating-ring';
+@import '../components/shared/engagement-box/engagement-box';
+
+@import '../containers/service/service';
 
 
 // Fonts

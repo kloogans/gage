@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import RatingRing from '../../shared/rating-ring/RatingRing'
-import EngagementBox from '../../shared/engagement-box/EngagementBox'
-import instagram from '../stores/instagram'
+import EngagementBox from '../shared/engagement-box/EngagementBox'
 import { observer } from 'mobx-react'
-import store from '../../../stores/store'
 import * as mobx from 'mobx'
+import instagram from '../instagram/stores/instagram'
+import store from '../../stores/store'
 
-const InstaUser = observer(
-  class InstaUser extends Component {
+const Dashboard = observer(
+  class Dashboard extends Component {
 
     render() {
       if (instagram.instagram_user_data) {
@@ -21,7 +20,7 @@ const InstaUser = observer(
               <div className='social__image-wrapper'>
                 <img src={data.profile_picture} />
               </div>
-              <p className='insta-user__username'>
+              <p className='social__username'>
                 {data.username}
               </p>
             </div>
@@ -42,7 +41,7 @@ const InstaUser = observer(
                 </li>
               </ul>
 
-              <EngagementBox rates={instagram.user_stats.engagement_avg} number_type='percent' />
+              <EngagementBox rates={store.global_rates} number_type='rating' />
 
               <ul className='social__counts'>
                 <li>
@@ -72,4 +71,4 @@ const InstaUser = observer(
   }
 )
 
-export default InstaUser
+export default Dashboard

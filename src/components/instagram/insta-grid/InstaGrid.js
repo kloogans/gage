@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import store from '../../../stores/store'
+import instagram from '../stores/instagram'
 import * as mobx from 'mobx'
 import GridItem from './grid-item/GridItem'
 
@@ -8,9 +9,9 @@ const InstaGrid = observer(
   class InstaGrid extends Component {
 
     render() {
-      if (store.instagram_post_data) {
-        const ig = mobx.toJS(store.instagram_post_data)
-        const ig_user = mobx.toJS(store.instagram_user_data)
+      if (instagram.instagram_post_data) {
+        const ig = mobx.toJS(instagram.instagram_post_data)
+        const ig_user = mobx.toJS(instagram.instagram_user_data)
         const user_data = ig_user.data
         const data = ig.data
         const images = data.map(post => {
