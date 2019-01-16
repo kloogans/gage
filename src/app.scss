@@ -19,6 +19,7 @@ body,
 .app__inner {
     -ms-overflow-style: none;  // IE 10+
     overflow: -moz-scrollbars-none;  // Firefox
+    box-sizing: border-box;
 
     &::-webkit-scrollbar {
       display: none;  // Safari and Chrome
@@ -33,11 +34,16 @@ body,
     width: 100%;
     height: 100%;
     @include flex(column, center, center);
+
+    * {
+      box-sizing: border-box;
+    }
   }
 
   &__inner {
     @include flex(column, center, center);
     width: 100%;
+    height: 100%;
     max-width: 768px;
     // overflow-x: hidden;
   }

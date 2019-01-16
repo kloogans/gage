@@ -21,10 +21,11 @@ class Instagram {
     global_percent: 0
   }
 
-  login_url = 'http://localhost:5000/auth/instagram'
+  api_url = 'http://api.gage.com'
+  login_url = `${this.api_url}/auth/instagram`
 
   checkInstagramAuth = async () => {
-    const url ='/api/check-auth',
+    const url =`${this.api_url}/api/check-auth`,
                local = localStorage.getItem('access_token')
     try {
       const data = await fetch(url)
@@ -56,10 +57,11 @@ class Instagram {
 
 
   getUserPostsInsta = async () => {
-    const url = '/api/instagram/self/posts'
+    const url = `${this.api_url}/api/instagram/self/posts`
     try {
       const data = await fetch(url),
             data_json = await data.json()
+      console.log('post data: ', data_json)
       this.instagram_post_data = await data_json
       if (await data_json) this.getTotalStats()
       if (await data_json.meta.code === 400) this.handleLogout()
@@ -69,7 +71,7 @@ class Instagram {
   }
 
   getUserDataInsta = async () => {
-    const url = '/api/instagram/self'
+    const url = `${this.api_url}/api/instagram/self`
     try {
       const data = await fetch(url)
       const data_json = await data.json()
@@ -100,7 +102,7 @@ class Instagram {
     this.access_token = null
     localStorage.setItem('access_token', '')
     this.authenticated = false
-    window.location.href = ('http://localhost:5000/auth/instagram/logout')
+    window.location.href = (`${this.api_url}/auth/instagram/logout`)
   }
 }
 

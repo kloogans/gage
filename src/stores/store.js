@@ -49,7 +49,9 @@ class Store {
           avg_comments = (comments / posts.length).toFixed(0),
           total_likes = likes,
           total_comments = comments,
-          engagement_avg = ((avg_likes + avg_comments) / followers).toFixed(2)
+          engagement_avg = (((avg_likes + avg_comments) / followers) * 0.1).toFixed(2)
+
+    console.log(engagement_avg)
 
     const user_stats = {
       likes_avg: this.formatNum(Number(avg_likes)),
