@@ -21,12 +21,12 @@ class Instagram {
     global_percent: 0
   }
 
-  api_url = 'http://api.gage.com'
+  api_url = 'http://gage.to:5000'
   login_url = `${this.api_url}/auth/instagram`
 
   checkInstagramAuth = async () => {
     const url =`${this.api_url}/api/check-auth`,
-               local = localStorage.getItem('access_token')
+          local = localStorage.getItem('access_token')
     try {
       const data = await fetch(url)
       const data_json = await data.json()
