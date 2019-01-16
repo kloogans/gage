@@ -21,7 +21,7 @@ class Instagram {
     global_percent: 0
   }
 
-  api_url = 'http://gage.to:5000'
+  api_url = 'http://192.168.0.7:5000'
   login_url = `${this.api_url}/auth/instagram`
 
   checkInstagramAuth = async () => {
