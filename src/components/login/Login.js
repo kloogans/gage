@@ -3,8 +3,9 @@ import { observer } from 'mobx-react'
 import store from '../../stores/store'
 import instagram from '../instagram/stores/instagram'
 import Footer from '../footer/Footer'
+import { Link } from 'react-router-dom'
 
-const Login = ({}) => (
+const Login = p => (
   <div className='login__container'>
     <h1>gage</h1>
     <div className='login__buttons'>
@@ -16,10 +17,10 @@ const Login = ({}) => (
         <i className='fab fa-facebook' />
         <span>&nbsp;Facebook</span>
       </button>
-      <button>
+      <Link to='twitter'>
         <i className='fab fa-twitter' />
         <span>&nbsp;Twitter</span>
-      </button>
+      </Link>
     </div>
     <Footer />
   </div>

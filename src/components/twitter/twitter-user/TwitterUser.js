@@ -7,15 +7,16 @@ const TwitterUser = observer(
   class TwitterUser extends Component {
 
     render() {
+      const p = { ...this.props }
       return (
         <div className='app__section animate__fade-in--long'>
           <div className='social__profile-photo'>
             <div className='social__image-wrapper'>
-              {/* <img src={data.profile_picture} /> */}
+              <img src={p.data.profile_image} />
               PIC
             </div>
             <p className='insta-user__username'>
-              username
+              {p.data.screen_name}
             </p>
           </div>
 
@@ -23,15 +24,15 @@ const TwitterUser = observer(
             <ul className='social__counts'>
               <li>
                 <p>Posts</p>
-                <p>97</p>
+                <p>{p.data.posts_count}</p>
               </li>
               <li>
                 <p>Followers</p>
-                <p>378</p>
+                <p>{p.data.followed_by}</p>
               </li>
               <li>
                 <p>Following</p>
-                <p>155</p>
+                <p>{p.data.following}</p>
               </li>
             </ul>
 
@@ -40,11 +41,11 @@ const TwitterUser = observer(
             <ul className='social__counts'>
               <li>
                 <p><i className='fas fa-heart' /></p>
-                <p>3</p>
+                <p>{twitter.twitter_averages.twitter_avg_favorites}</p>
               </li>
               <li>
                 <p>Total</p>
-                <p>313</p>
+                <p>{p.data.favorites_total}</p>
               </li>
               <li>
                 <p><i className='fas fa-comment' /></p>

@@ -27,6 +27,8 @@ const App = observer(
       }
     }
 
+    changeRoute = route => this.props.history.push(route)
+
     render() {
       return (
         <Div100vh>
@@ -36,27 +38,25 @@ const App = observer(
               <Menu />
               <div ref='scroll' />
               <main className='app__content'>
-                {
-                  store.authenticated
-                    ? (
-                      <Router>
-                        <Switch>
-                          <Route exact path='/' render={() => {
-                            return <Service selected_service={'home'} />
-                          }} />
+                <Router>
+                  <Switch>
+                    <Route exact path='/'
+                                 render={() => {
+                                   if (store.authenticated) {
+                                     return <Service selected_service={'home'} />
+                                   } else {
+                                     return <Login />
+                                   }
+                    }} />
+                    <Route path='/instagram' render={() => {
+                      return <Service selected_service={'instagram'} />
+                    }} />
 
-                          <Route path='/instagram' render={() => {
-                            return <Service selected_service={'instagram'} />
-                          }} />
-
-                          <Route path='/twitter' render={() => {
-                            return <Service selected_service={'twitter'} />
-                          }} />
-                        </Switch>
-                      </Router>
-                    )
-                    : <Login />
-                }
+                    <Route path='/twitter' render={() => {
+                      return <Service selected_service={'twitter'} />
+                    }} />
+                  </Switch>
+                </Router>
               </main>
             </div>
           </div>
