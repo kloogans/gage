@@ -8,11 +8,12 @@ const TwitterUser = observer(
 
     render() {
       const p = { ...this.props }
+      const avatar = (p.data.profile_image).replace('_normal', '')
       return (
         <div className='app__section animate__fade-in--long'>
           <div className='social__profile-photo'>
             <div className='social__image-wrapper'>
-              <img src={p.data.profile_image} />
+              <img src={avatar} />
               PIC
             </div>
             <p className='insta-user__username'>
@@ -36,7 +37,8 @@ const TwitterUser = observer(
               </li>
             </ul>
 
-            <EngagementBox rates={Number(twitter.twitter_rates.twitter_engagement_rate_all)} number_type='percent' />
+            <EngagementBox rates={Number(twitter.twitter_rates.twitter_engagement_rate_all)}
+                           number_type='percent' />
 
             <ul className='social__counts'>
               <li>
