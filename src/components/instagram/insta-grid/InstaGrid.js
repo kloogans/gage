@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import store from '../../../stores/store'
 import instagram from '../stores/instagram'
+import Loader from '../../loader/Loader'
 import * as mobx from 'mobx'
 import GridItem from './grid-item/GridItem'
 
@@ -23,16 +24,14 @@ const InstaGrid = observer(
                            imgUrl={post.images.standard_resolution.url}
                            time={post.created_time}
                            link={post.link} />
-
         })
-        console.log('grid: ', ig)
         return (
           <div className={store.toggle.grid ? 'insta-grid__container' : 'insta-grid__container'}>
             {images}
           </div>
         )
       } else {
-        return 'Loading...'
+        return <Loader />
       }
     }
   }

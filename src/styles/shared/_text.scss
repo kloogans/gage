@@ -1,0 +1,51 @@
+@import '../utils/variables';
+
+.text {
+  font-family: $font-family--main;
+  font-size: 2rem;
+  color: $black;
+
+  &--small {
+    font-size: 0.8rem;
+  }
+
+  &--medium {
+    font-size: 1rem;
+  }
+
+  &--large {
+    font-size: 1.2rem;
+  }
+
+  &__shade {
+    &--light {
+      color: lighten($black, 20%);
+    }
+  }
+
+  &__weight {
+    &--light {
+      font-weight: $font--thin;
+    }
+
+    &--medium {
+      font-weight: $font--medium;
+    }
+
+    &--heavy {
+      font-weight: $font--thick;
+    }
+  }
+
+  &__margin {
+
+    &--15-0 {
+      margin: 15px 0;
+    }
+  }
+
+
+  &--no-margin {
+    margin: 0;
+  }
+}

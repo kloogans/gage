@@ -7,9 +7,13 @@ import * as mobx from 'mobx'
    twitter_posts_data = null
    twitter_averages = null
    twitter_username = null
+   twitter_toggle = {
+     user: true,
+     media: false
+   }
 
-   api_url = 'http://192.168.0.7:5000'
-   // api_url = 'http://localhost:5000'
+   // api_url = 'http://192.168.0.7:5000'
+   api_url = 'http://localhost:5000'
 
    checkLocalStorage = () => {
      const local = localStorage.getItem('twitter_username')
@@ -80,6 +84,21 @@ import * as mobx from 'mobx'
      this.twitter_rates = post_rates
      this.twitter_loading = false
    }
+
+   handleTwitterNavToggles = type => {
+     if (type === 'user'){
+       this.twitter_toggle = {
+         user: true,
+         media: false
+       }
+     }
+     if (type === 'media') {
+       this.twitter_toggle = {
+         user: false,
+         media: true
+       }
+     }
+   }
  }
 
  decorate(Twitter, {
@@ -88,9 +107,11 @@ import * as mobx from 'mobx'
    twitter_posts_data: observable,
    twitter_averages: observable,
    twitter_username: observable,
+   twitter_toggle: observable,
    checkLocalStorage: action,
    getTwitterUserData: action,
-   getTwitterPosts: action
+   getTwitterPosts: action,
+   handleTwitterNavToggles: action
  })
 
  const twitter = new Twitter()
