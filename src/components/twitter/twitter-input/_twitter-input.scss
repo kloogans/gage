@@ -1,0 +1,30 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/variables';
+
+.twitter-input {
+  @include flex(column, center, center);
+  @include size (100%, 100%);
+
+  input {
+    width: 75%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px dashed $blue;
+    text-transform: lowercase;
+    font-size: 2rem;
+    padding: 8px 0;
+    color: lighten($black, 30%);
+
+    &::placeholder {
+      color: lighten($black, 50%);
+    }
+  }
+
+  button {
+    padding: 20px;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: $black;
+  }
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import NavTabs from '../nav-tabs/NavTabs'
 import TwitterUser from './twitter-user/TwitterUser'
+import TwitterInput from './twitter-input/TwitterInput'
+import Loader from '../loader/Loader'
 import { observer } from 'mobx-react'
 import * as mobx from 'mobx'
 import store from '../../stores/store'
@@ -13,14 +15,10 @@ const Twitter = observer(
       twitter.checkLocalStorage()
     }
 
-    getUserData = () => {
-      twitter.getTwitterUserData(this.refs.twitter_username.value)
-    }
-
     render() {
       if (twitter.twitter_username) {
         if (twitter.twitter_loading) {
-          return 'Loading...'
+          return <Loader />
         } else {
           const data = mobx.toJS(twitter.twitter_user_data)
           const posts = mobx.toJS(twitter.twitter_posts_data)
@@ -38,13 +36,7 @@ const Twitter = observer(
         return (
           <div className='social__container'>
             <div className='social__content-wrapper'>
-              <input type='text'
-                     ref='twitter_username'
-                     onSubmit={this.getUserData}
-                     placeholder='twitter username' />
-              <button onClick={this.getUserData}>
-                Go
-              </button>
+              <TwitterInput />
             </div>
           </div>
         )

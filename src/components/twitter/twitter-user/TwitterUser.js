@@ -36,24 +36,25 @@ const TwitterUser = observer(
               </li>
             </ul>
 
-            <EngagementBox rates={9.88} number_type='percent' />
+            <EngagementBox rates={Number(twitter.twitter_rates.twitter_engagement_rate_all)} number_type='percent' />
 
             <ul className='social__counts'>
               <li>
                 <p><i className='fas fa-heart' /></p>
-                <p>{twitter.twitter_averages.twitter_avg_favorites}</p>
+                <p>{twitter.twitter_rates.twitter_avg_favorites}</p>
               </li>
               <li>
                 <p>Total</p>
                 <p>{p.data.favorites_total}</p>
               </li>
+
               <li>
-                <p><i className='fas fa-comment' /></p>
-                <p>1</p>
+                <p><i className='fas fa-retweet' /></p>
+                <p>{twitter.twitter_rates.twitter_avg_retweets}</p>
               </li>
               <li>
                 <p>Total</p>
-                <p>41</p>
+                <p>{twitter.twitter_rates.twitter_total_retweets}</p>
               </li>
             </ul>
           </div>

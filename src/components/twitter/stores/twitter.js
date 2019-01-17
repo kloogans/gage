@@ -8,6 +8,7 @@ import * as mobx from 'mobx'
    twitter_averages = null
    twitter_username = null
 
+   // api_url = 'http://192.168.0.7:5000'
    api_url = 'http://localhost:5000'
 
    checkLocalStorage = () => {
@@ -46,7 +47,8 @@ import * as mobx from 'mobx'
        const data = await fetch(url)
        const data_json = await data.json()
        this.twitter_posts_data = await data_json
-       if ( await data_json) {
+       console.log(data_json)
+       if (await data_json) {
          this.calculateTwitterRates()
        }
      } catch(e) {
@@ -61,13 +63,21 @@ import * as mobx from 'mobx'
            followers_total = user_data.followed_by
 
      let favorites = 0
+     let retweets = 0
      user_posts.map(p => {
        favorites += Number(p.favorite_count)
+       retweets += Number(p.retweet_count)
      })
-     const post_averages = {
-       twitter_avg_favorites: Math.round(favorites / user_posts.length)
+
+     const engagement_rate = ((favorites_total + retweets) / followers_total)
+     console.log('twitter rate: ', engagement_rate)
+     const post_rates = {
+       twitter_avg_favorites: Math.round(favorites / user_posts.length),
+       twitter_avg_retweets: Math.round(retweets / user_posts.length),
+       twitter_total_retweets: retweets,
+       twitter_engagement_rate_all: engagement_rate.toFixed(2)
      }
-     this.twitter_averages = post_averages
+     this.twitter_rates = post_rates
      this.twitter_loading = false
    }
  }
