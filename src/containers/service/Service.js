@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Instagram from '../../components/instagram/Instagram'
+import Twitter from '../../components/twitter/Twitter'
 import Dashboard from '../../components/dashboard/Dashboard'
 import NavTabs from '../../components/nav-tabs/NavTabs'
 import { observer } from 'mobx-react'
@@ -28,7 +29,6 @@ const Service = observer(
       if (props.selected_service === 'home') {
         return (
           <div className='service__container'>
-            {/* <NavTabs selected_service='home' /> */}
             <Dashboard />
           </div>
         )
@@ -38,8 +38,12 @@ const Service = observer(
             <Instagram />
           </div>
         )
-      } else {
-        return 'Loading...'
+      } else if (props.selected_service === 'twitter') {
+        return (
+          <div className='service__container'>
+            <Twitter />
+          </div>
+        )
       }
     }
 

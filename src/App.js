@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import store from './stores/store'
 import TopBar from './components/top-bar/TopBar'
 import Instagram from './components/instagram/Instagram'
+import Twitter from './components/twitter/Twitter'
 import Login from './components/login/Login'
 import Loader from './components/loader/Loader'
 import Menu from './components/menu/Menu'
@@ -44,8 +45,12 @@ const App = observer(
                             return <Service selected_service={'home'} />
                           }} />
 
-                          <Route exact path='/instagram' render={() => {
+                          <Route path='/instagram' render={() => {
                             return <Service selected_service={'instagram'} />
+                          }} />
+
+                          <Route path='/twitter' render={() => {
+                            return <Service selected_service={'twitter'} />
                           }} />
                         </Switch>
                       </Router>
