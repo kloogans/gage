@@ -13,8 +13,7 @@ const TwitterUser = observer(
         <div className='app__section animate__fade-in--long'>
           <div className='social__profile-photo'>
             <div className='social__image-wrapper'>
-              <img src={avatar} />
-              PIC
+              <img src={avatar} alt={p.data.screen_name + ' Twitter'} />
             </div>
             <p className='insta-user__username'>
               {p.data.screen_name}

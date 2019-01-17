@@ -8,8 +8,8 @@ import * as mobx from 'mobx'
    twitter_averages = null
    twitter_username = null
 
-   // api_url = 'http://192.168.0.7:5000'
-   api_url = 'http://localhost:5000'
+   api_url = 'http://192.168.0.7:5000'
+   // api_url = 'http://localhost:5000'
 
    checkLocalStorage = () => {
      const local = localStorage.getItem('twitter_username')
