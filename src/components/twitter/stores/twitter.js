@@ -3,6 +3,7 @@ import * as mobx from 'mobx'
 import store from '../../../stores/store'
 
  class Twitter {
+   authenticated = false
    twitter_loading = true
    twitter_user_data = null
    twitter_posts_data = null
@@ -31,6 +32,8 @@ import store from '../../../stores/store'
      if (local) {
        console.log(local)
        this.twitter_username = local
+       this.authenticated = true
+       store.authenticated = true
        this.getTwitterUserData(local)
      }
    }

@@ -95,11 +95,10 @@ class Store {
         total_likes_global = likes.reduce((sum, item) => {
           return total_likes_count += item
         }, 0),
-        average_likes_global = (instagram ? ig.likes_avg : 0) + (twitter ? tw.twitter_avg_favorites : 0),
-        total_posts = (instagram ? ig.total_posts : 0) + (twitter ? tw.twitter_total_posts : 0),
-        total_followers = (instagram ? ig.followers : 0) + (twitter ? tw.twitter_followed_by : 0),
-        total_following = (instagram ? ig.following : 0) + (twitter ? tw.twitter_following : 0)
-
+        average_likes_global = (instagram.authenticated ? ig.likes_avg : 0) + (twitter.authenticated ? tw.twitter_avg_favorites : 0),
+        total_posts = (instagram.authenticated ? ig.total_posts : 0) + (twitter.authenticated ? tw.twitter_total_posts : 0),
+        total_followers = (instagram.authenticated ? ig.followers : 0) + (twitter.authenticated ? tw.twitter_followed_by : 0),
+        total_following = (instagram.authenticated ? ig.following : 0) + (twitter.authenticated ? tw.twitter_following : 0)
 
     const global_rates = {
       global_rate: (5 * ((rate / avg) * 0.5)).toFixed(3),
@@ -107,10 +106,11 @@ class Store {
       global_engagement_avg: rate.toFixed(2),
       global_total_likes: this.formatNum(total_likes_global),
       global_average_likes: this.formatNum(average_likes_global.toFixed(0)),
-      global_total_posts: this.formatNum(total_posts),
+      global_total_posts: this.formatNum(Number(total_posts)),
       global_total_followers: this.formatNum(total_followers),
-      global_total_following: this.formatNum(total_following)
+      global_total_following: this.formatNum(Number(total_following))
     }
+    console.log('global rates', global_rates)
     this.global_rates = global_rates
   }
 

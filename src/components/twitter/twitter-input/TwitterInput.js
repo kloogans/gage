@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import twitter from '../stores/twitter'
+import store from '../../../stores/store'
 import { observer } from 'mobx-react'
 
 const TwitterInput = observer(
@@ -14,6 +15,8 @@ const TwitterInput = observer(
       const username = this.refs.twitter_username.value
       if (username.length > 0) {
         twitter.getTwitterUserData(this.refs.twitter_username.value)
+        store.authenticated = true
+        twitter.authenticated = true
       }
     }
 
