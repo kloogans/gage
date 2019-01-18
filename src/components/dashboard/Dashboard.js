@@ -12,16 +12,16 @@ const Dashboard = observer(
     render() {
       if (instagram.instagram_user_data || twitter.twitter_user_data) {
         const ig = instagram.instagram_user_data ? mobx.toJS(instagram.instagram_user_data) : null,
-              tw = twitter ? mobx.toJS(twitter.twitter_user_data) : null
+              tw = twitter.authenticated ? mobx.toJS(twitter.twitter_user_data) : null
 
         return (
           <div className='app__section dashboard animate__fade-in--long'>
             <div className='social__profile-photo'>
               <div className='social__image-wrapper'>
-                <img src={!twitter ? ig.data.profile_picture : tw.profile_image} />
+                <img src={!twitter.authenticated ? ig.data.profile_picture : tw.profile_image} />
               </div>
               <p className='social__username'>
-                {!twitter ? ig.data.username : tw.screen_name}
+                {!twitter.authenticated ? ig.data.username : tw.screen_name}
               </p>
             </div>
 

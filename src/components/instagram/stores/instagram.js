@@ -97,7 +97,7 @@ class Instagram {
 
   handleLogout = () => {
     this.access_token = null
-    localStorage.setItem('access_token', '')
+    localStorage.removeItem('access_token')
     this.authenticated = false
     window.location.href = (`${this.api_url}/auth/instagram/logout`)
   }

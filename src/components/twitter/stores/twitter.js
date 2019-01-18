@@ -127,9 +127,16 @@ import store from '../../../stores/store'
        }
      }
    }
+
+   handleLogout = () => {
+     this.twitter_username = null
+     this.authenticated = false
+     localStorage.removeItem('twitter_username')
+   }
  }
 
  decorate(Twitter, {
+   authenticated: observable,
    twitter_loading: observable,
    twitter_user_data: observable,
    twitter_posts_data: observable,
@@ -141,7 +148,8 @@ import store from '../../../stores/store'
    getTwitterUserData: action,
    getTwitterPosts: action,
    getTwitterTotals: action,
-   handleTwitterNavToggles: action
+   handleTwitterNavToggles: action,
+   handleLogout: action
  })
 
  const twitter = new Twitter()

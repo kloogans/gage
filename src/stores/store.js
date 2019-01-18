@@ -24,11 +24,6 @@ class Store {
     global_percent: 0
   }
 
-  pushNewRoute = service => {
-    history.push(`/${service}`)
-    this.toggle.menu = false
-  }
-
   checkPreviousAuth() {
     this.checkAuth()
   }
@@ -90,7 +85,7 @@ class Store {
           return count += item
         }, 0),
         rate = sum / rates.length,
-        likes = [instagram ? ig.likes_total : null, twitter ? tw.total_favorites : null, null],
+        likes = [instagram.authenticated ? ig.likes_total : 0, twitter.authenticated ? tw.total_favorites : 0, 0],
         total_likes_count = 0,
         total_likes_global = likes.reduce((sum, item) => {
           return total_likes_count += item
@@ -100,12 +95,13 @@ class Store {
         total_followers = (instagram.authenticated ? ig.followers : 0) + (twitter.authenticated ? tw.twitter_followed_by : 0),
         total_following = (instagram.authenticated ? ig.following : 0) + (twitter.authenticated ? tw.twitter_following : 0)
 
+
     const global_rates = {
       global_rate: (5 * ((rate / avg) * 0.5)).toFixed(3),
       global_percent: (((rate / avg) * 0.5) * 100).toFixed(2),
       global_engagement_avg: rate.toFixed(2),
-      global_total_likes: this.formatNum(total_likes_global),
-      global_average_likes: this.formatNum(average_likes_global.toFixed(0)),
+      global_total_likes: this.formatNum(Number(total_likes_global)),
+      global_average_likes: this.formatNum(Number(average_likes_global.toFixed(0))),
       global_total_posts: this.formatNum(Number(total_posts)),
       global_total_followers: this.formatNum(total_followers),
       global_total_following: this.formatNum(Number(total_following))

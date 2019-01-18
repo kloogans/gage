@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import store from '../../stores/store'
 import instagram from '../instagram/stores/instagram'
+import twitter from '../twitter/stores/twitter'
 
 const Menu = observer(
   class Menu extends Component {
+
+    handleLogoutAll = () => {
+      twitter.handleLogout()
+      instagram.handleLogout()
+      store.authenticated = false
+      localStorage.clear()
+    }
 
     render() {
       return (
@@ -17,36 +25,19 @@ const Menu = observer(
               </button>
             </div>
             <div className='menu__buttons'>
-              <button onClick={() => store.pushNewRoute('home')}>Home</button>
-              {
-                instagram.authenticated
-                  ? (
-                    <button onClick={() => store.pushNewRoute('instagram')}>
-                      Instagram
-                    </button>
-                  ) : null
-              }
-              {
-                instagram.authenticated
-                  ? (
-                    <button onClick={() => store.pushNewRoute('facebook')}>
-                      Facebook
-                    </button>
-                  ) : null
-              }
-              {
-                instagram.authenticated
-                  ? (
-                    <button onClick={() => store.pushNewRoute('twitter')}>
-                      Twitter
-                    </button>
-                  ) : null
-              }
-
-              <button>
-                Accounts
-              </button>
-              <button onClick={instagram.handleLogout}>
+              <Link to='/' onClick={() => store.toggle.menu = false}>
+                Home
+              </Link>
+              <Link to='instagram' onClick={() => store.toggle.menu = false}>
+                Instagram
+              </Link>
+              <Link to='/facebook' onClick={() => store.toggle.menu = false}>
+                Facebook
+              </Link>
+              <Link to='/twitter' onClick={() => store.toggle.menu = false}>
+                Twitter
+              </Link>
+              <button onClick={this.handleLogoutAll}>
                 Logout All
               </button>
             </div>
