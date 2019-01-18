@@ -24,8 +24,8 @@ import store from '../../../stores/store'
      media: false
    }
 
-   // api_url = 'http://192.168.0.7:5000'
-   api_url = 'http://localhost:5000'
+   api_url = 'http://192.168.0.7:5000'
+   // api_url = 'http://localhost:5000'
 
    checkLocalStorage = () => {
      const local = localStorage.getItem('twitter_username')
