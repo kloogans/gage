@@ -1,5 +1,6 @@
 import { observable, decorate, action } from 'mobx'
 import * as mobx from 'mobx'
+import store from '../../../stores/store'
 
  class Twitter {
    twitter_loading = true
@@ -7,6 +8,16 @@ import * as mobx from 'mobx'
    twitter_posts_data = null
    twitter_averages = null
    twitter_username = null
+
+   twitter_rates = {
+     twitter_avg_favorites: 0,
+     twitter_avg_retweets: 0,
+     twitter_avg_favorites: 0,
+     twitter_total_retweets: 0,
+     twitter_engagement_rate_all: 0,
+     twitter_followed_by: 0
+   }
+
    twitter_toggle = {
      user: true,
      media: false
@@ -18,9 +29,15 @@ import * as mobx from 'mobx'
    checkLocalStorage = () => {
      const local = localStorage.getItem('twitter_username')
      if (local) {
+       console.log(local)
        this.twitter_username = local
        this.getTwitterUserData(local)
      }
+   }
+
+   initializeStore = () => {
+     this.getTwitterUserData()
+     this.getTwitterPosts()
    }
 
    getTwitterUserData = async username => {
@@ -30,16 +47,19 @@ import * as mobx from 'mobx'
      try {
        const data = await fetch(url)
        const data_json = await data.json()
-       const twitter = {
-         screen_name: await data_json[0].screen_name,
-         profile_image: await data_json[0].profile_image_url_https,
-         favorites_total: await data_json[0].favourites_count,
-         following: await data_json[0].friends_count,
-         followed_by: await data_json[0].followers_count,
-         posts_count: await data_json[0].statuses_count
+       if (await data_json) {
+         const twitter = {
+           screen_name: await data_json[0].screen_name,
+           profile_image: await data_json[0].profile_image_url_https,
+           favorites_total: await data_json[0].favourites_count,
+           following: await data_json[0].friends_count,
+           followed_by: await data_json[0].followers_count,
+           posts_count: await data_json[0].statuses_count
+         }
+         console.log(twitter)
+         this.twitter_user_data = twitter
+         this.getTwitterPosts(username)
        }
-       this.twitter_user_data = twitter
-       this.getTwitterPosts(username)
      } catch(e) {
        console.error(e)
      }
@@ -51,16 +71,15 @@ import * as mobx from 'mobx'
        const data = await fetch(url)
        const data_json = await data.json()
        this.twitter_posts_data = await data_json
-       console.log(data_json)
        if (await data_json) {
-         this.calculateTwitterRates()
+         this.getTwitterTotals()
        }
      } catch(e) {
        console.error(e)
      }
    }
 
-   calculateTwitterRates = () => {
+   getTwitterTotals = () => {
      const user_data = mobx.toJS(this.twitter_user_data),
            user_posts = mobx.toJS(this.twitter_posts_data),
            favorites_total = user_data.favorites_total,
@@ -75,14 +94,20 @@ import * as mobx from 'mobx'
 
      const engagement_rate = ((favorites_total + retweets) / followers_total)
      console.log('twitter rate: ', engagement_rate)
-     const post_rates = {
+     const twitter_rates = {
        twitter_avg_favorites: Math.round(favorites / user_posts.length),
        twitter_avg_retweets: Math.round(retweets / user_posts.length),
+       total_favorites: favorites,
        twitter_total_retweets: retweets,
-       twitter_engagement_rate_all: engagement_rate.toFixed(2)
+       twitter_engagement_rate_all: Number(engagement_rate.toFixed(2)),
+       twitter_followed_by: user_data.followed_by,
+       twitter_following: user_data.following,
+       twitter_total_posts: user_data.posts_count
      }
-     this.twitter_rates = post_rates
+     console.log(twitter_rates)
+     this.twitter_rates = twitter_rates
      this.twitter_loading = false
+     store.calculateRatings()
    }
 
    handleTwitterNavToggles = type => {
@@ -106,11 +131,13 @@ import * as mobx from 'mobx'
    twitter_user_data: observable,
    twitter_posts_data: observable,
    twitter_averages: observable,
+   twitter_rates: observable,
    twitter_username: observable,
    twitter_toggle: observable,
    checkLocalStorage: action,
    getTwitterUserData: action,
    getTwitterPosts: action,
+   getTwitterTotals: action,
    handleTwitterNavToggles: action
  })
 

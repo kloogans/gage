@@ -17,6 +17,7 @@ const Menu = observer(
               </button>
             </div>
             <div className='menu__buttons'>
+              <button onClick={() => store.pushNewRoute('home')}>Home</button>
               {
                 instagram.authenticated
                   ? (

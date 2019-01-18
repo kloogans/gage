@@ -31,7 +31,6 @@ class Instagram {
     try {
       const data = await fetch(url)
       const data_json = await data.json()
-      console.log(data_json)
       if (data_json.authenticated_ig || local) {
         if (local) {
           this.authenticated = true
@@ -44,7 +43,6 @@ class Instagram {
           window.localStorage.setItem('access_token', data_json.access_token)
         }
         instagram.initializeStore()
-        console.log('checked auth, we\'re good',)
       }
     } catch(e) {
       console.error(e)
@@ -62,7 +60,6 @@ class Instagram {
     try {
       const data = await fetch(url),
             data_json = await data.json()
-      console.log('post data: ', data_json)
       this.instagram_post_data = await data_json
       if (await data_json) this.getTotalStats()
       if (await data_json.meta.code === 400) this.handleLogout()
@@ -86,7 +83,6 @@ class Instagram {
   }
 
   getTotalStats = () => {
-    console.log('running total stats')
     if (this.instagram_post_data) {
       const data = mobx.toJS(this.instagram_post_data),
             data_posts = data.data,

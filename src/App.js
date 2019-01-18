@@ -30,6 +30,7 @@ const App = observer(
     changeRoute = route => this.props.history.push(route)
 
     render() {
+      console.log(store.authenticated)
       return (
         <Div100vh>
           <div className='app__wrapper'>

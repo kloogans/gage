@@ -12,7 +12,6 @@ const TwitterMedia = observer(
 
     render() {
       const data = mobx.toJS(twitter.twitter_posts_data)
-      console.log(data)
       return (
         <div className='twitter-media animate__fade-in--long'>
           {

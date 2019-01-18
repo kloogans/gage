@@ -5,6 +5,7 @@ import 'react-circular-progressbar/dist/styles.css'
 import { observer } from 'mobx-react'
 import store from '../../../stores/store'
 import instagram from '../../instagram/stores/instagram'
+import twitter from '../../twitter/stores/twitter'
 
 const RatingRing = observer(
   class RatingRing extends Component {
@@ -56,9 +57,13 @@ const RatingRing = observer(
             </div>
 
             <div className={props.number_type === 'rating' ? 'rating__bottom-group' : 'app--remove'}>
-              <p>
+              <p className={store.authenticated ? '' : 'app--remove'}>
                 <i className='fab fa-instagram' />
                 &nbsp; {instagram.user_stats.engagement_avg}%
+              </p>
+              <p className={twitter.username ? '' : 'app--remove'}>
+                <i className='fab fa-twitter' />
+                &nbsp; {twitter.twitter_rates.twitter_engagement_rate_all}%
               </p>
             </div>
           </div>

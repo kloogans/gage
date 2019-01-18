@@ -14,6 +14,7 @@ const Twitter = observer(
 
     componentDidMount() {
       twitter.checkLocalStorage()
+      if (twitter.username) twitter.initializeStore()
     }
 
     render() {
