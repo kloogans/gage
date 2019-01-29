@@ -9,17 +9,11 @@ const Login = p => (
   <div className='login__container'>
     <h1>gage</h1>
     <div className='login__buttons'>
-      <button onClick={instagram.handleLogin}>
+      <button onClick={instagram.handleLogin} title='Login with Instagram'>
         <i className='fab fa-instagram' />
-        <span>&nbsp;Instagram</span>
       </button>
-      <button>
-        <i className='fab fa-facebook' />
-        <span>&nbsp;Facebook</span>
-      </button>
-      <Link to='twitter'>
+      <Link to='twitter' title='Login with Twitter'>
         <i className='fab fa-twitter' />
-        <span>&nbsp;Twitter</span>
       </Link>
     </div>
     <Footer />

@@ -31,9 +31,6 @@ const Menu = observer(
               <Link to='instagram' onClick={() => store.toggle.menu = false}>
                 Instagram
               </Link>
-              <Link to='/facebook' onClick={() => store.toggle.menu = false}>
-                Facebook
-              </Link>
               <Link to='/twitter' onClick={() => store.toggle.menu = false}>
                 Twitter
               </Link>

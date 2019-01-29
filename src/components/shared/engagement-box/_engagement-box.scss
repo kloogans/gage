@@ -17,6 +17,23 @@
     min-height: 327px;
   }
 
+  @media (max-width: 768px) {
+    border-radius: 0;
+  }
+
+  &__service-icon {
+    @include flex(row, center, center);
+    width: 100%;
+
+    i {
+      position: absolute;
+      top: 0;
+      font-size: 1.5rem;
+      color: white;
+      padding-top: 25px;
+    }
+  }
+
   p {
     @include flex(row, center, center);
     font-size: 0.8rem;

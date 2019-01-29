@@ -17,8 +17,6 @@ const TwitterMedia = observer(
           {
             data.map(p => {
               let text = p.text
-
-              // console.log()
               return <div key={p.id} className='twitter-media__post'>
                 <div className='post__top-bar'>
                   <div className='post__user'>

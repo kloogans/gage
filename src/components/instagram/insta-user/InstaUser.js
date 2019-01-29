@@ -42,16 +42,18 @@ const InstaUser = observer(
                 </li>
               </ul>
 
-              <EngagementBox rates={instagram.user_stats.engagement_avg} number_type='percent' />
+              <EngagementBox rates={instagram.user_stats.engagement_avg}
+                             number_type='percent'
+                             service='instagram'/>
 
               <ul className='social__counts'>
                 <li>
                   <p><i className='fas fa-heart' /></p>
-                  <p>{stats.likes_avg}</p>
+                  <p>{store.formatNum(stats.likes_avg)}</p>
                 </li>
                 <li>
                   <p>Total</p>
-                  <p>{stats.likes_total}</p>
+                  <p>{store.formatNum(stats.likes_total)}</p>
                 </li>
                 <li>
                   <p><i className='fas fa-comment' /></p>

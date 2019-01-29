@@ -6,6 +6,7 @@ import store from './stores/store'
 import TopBar from './components/top-bar/TopBar'
 import Instagram from './components/instagram/Instagram'
 import Twitter from './components/twitter/Twitter'
+import Facebook from './components/facebook/Facebook'
 import Login from './components/login/Login'
 import Loader from './components/loader/Loader'
 import Menu from './components/menu/Menu'
@@ -19,7 +20,7 @@ const App = observer(
   class App extends Component {
 
     componentDidMount() {
-      store.checkPreviousAuth()
+      store.checkAuth()
     }
 
     checkLocalStorage = () => {
@@ -58,6 +59,10 @@ const App = observer(
 
                     <Route path='/twitter' render={() => {
                       return <Service selected_service={'twitter'} />
+                    }} />
+
+                    <Route path='/facebook' render={() => {
+                      return <Service selected_service={'facebook'} />
                     }} />
                   </Switch>
               </main>

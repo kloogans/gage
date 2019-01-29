@@ -20,9 +20,9 @@ const Dashboard = observer(
               <div className='social__image-wrapper'>
                 <img src={!twitter.authenticated ? ig.data.profile_picture : tw.profile_image} />
               </div>
-              <p className='social__username'>
+              {/* <p className='social__username'>
                 {!twitter.authenticated ? ig.data.username : tw.screen_name}
-              </p>
+              </p> */}
             </div>
 
             <div className='social__stats'>

@@ -6,6 +6,7 @@ import InstaGrid from './insta-grid/InstaGrid'
 import InstaUser from './insta-user/InstaUser'
 import NavTabs from '../nav-tabs/NavTabs'
 import Loader from '../loader/Loader'
+import ServicePlaceholder from '../shared/service-placeholder/ServicePlaceholder'
 
 const Instagram = observer(
   class Instagram extends Component {
@@ -15,22 +16,27 @@ const Instagram = observer(
     }
 
     render() {
-      if (instagram.instagram_post_data && instagram.instagram_user_data) {
-        return (
-          <div className='social__container animate__fade-in'>
-            <NavTabs selected_service='instagram' />
+      if (instagram.authenticated) {
+        if (instagram.instagram_post_data && instagram.instagram_user_data) {
+          return (
+            <div className='social__container animate__fade-in'>
+              <NavTabs selected_service='instagram' />
 
-            <div className='social__content-wrapper'>
-              {
-                store.toggle.user
-                  ? <InstaUser />
-                  : <InstaGrid />
-              }
+              <div className='social__content-wrapper'>
+                {
+                  store.toggle.user
+                    ? <InstaUser />
+                    : <InstaGrid />
+                }
+              </div>
             </div>
-          </div>
-        )
+          )
+        } else {
+          return <Loader />
+        }
       } else {
-        return <Loader />
+        return <ServicePlaceholder service={'Instagram'}
+                                   login_url={instagram.login_url} />
       }
     }
 

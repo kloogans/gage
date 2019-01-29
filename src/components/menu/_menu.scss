@@ -38,7 +38,7 @@
       padding: 0 7px
     }
 
-    button {
+    button, a {
       color: white;
       font-size: 1.2rem;
       transition: all 0.3s ease;
@@ -56,18 +56,18 @@
 
     button, a {
       width: 100%;
-      max-width: 300px;
       background: transparent;
       text-align: center;
       font-family: $font-family--main;
-      font-size: 1rem;
+      font-size: 2rem;
       font-weight: $font--thick;
       color: white;
       padding: 15px 0;
       margin: 5px 0;
-      border: 2px solid white;
-      border-radius: 3px;
+      // border: 2px solid white;
+      // border-radius: 3px;
       text-transform: lowercase;
+      text-decoration: none;
       transition: all 0.3s ease;
 
       &:focus,

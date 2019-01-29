@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import store from '../../../../stores/store'
 
   class GridItem extends Component {
 
@@ -17,7 +18,7 @@ import React, { Component } from 'react'
             <div className='analytics-interactions'>
               <p>
                 <i className='fas fa-heart' />
-                &nbsp;<span>{item.likes}</span>
+                &nbsp;<span>{store.formatNum(item.likes)}</span>
               </p>
               <p>
                 <i className='fas fa-comment' />

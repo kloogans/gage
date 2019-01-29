@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import Instagram from '../../components/instagram/Instagram'
-import Twitter from '../../components/twitter/Twitter'
-import Dashboard from '../../components/dashboard/Dashboard'
-import NavTabs from '../../components/nav-tabs/NavTabs'
 import { observer } from 'mobx-react'
 import store from '../../stores/store'
+import Twitter from '../../components/twitter/Twitter'
+import Facebook from '../../components/facebook/Facebook'
+import NavTabs from '../../components/nav-tabs/NavTabs'
+import Instagram from '../../components/instagram/Instagram'
+import Dashboard from '../../components/dashboard/Dashboard'
 
 const Service = observer(
   class Service extends Component {
@@ -42,6 +43,12 @@ const Service = observer(
         return (
           <div className='service__container'>
             <Twitter />
+          </div>
+        )
+      } else if (props.selected_service === 'facebook') {
+        return (
+          <div className='service__container'>
+            <Facebook />
           </div>
         )
       }

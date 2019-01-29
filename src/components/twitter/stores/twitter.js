@@ -5,18 +5,18 @@ import store from '../../../stores/store'
  class Twitter {
    authenticated = false
    twitter_loading = true
+   twitter_username = null
+   twitter_averages = null
    twitter_user_data = null
    twitter_posts_data = null
-   twitter_averages = null
-   twitter_username = null
 
    twitter_rates = {
-     twitter_avg_favorites: 0,
+     twitter_followed_by: 0,
      twitter_avg_retweets: 0,
      twitter_avg_favorites: 0,
      twitter_total_retweets: 0,
-     twitter_engagement_rate_all: 0,
-     twitter_followed_by: 0
+     twitter_total_favorites: 0,
+     twitter_engagement_rate_all: 0
    }
 
    twitter_toggle = {
@@ -24,16 +24,15 @@ import store from '../../../stores/store'
      media: false
    }
 
-   api_url = 'http://192.168.0.7:5000'
-   // api_url = 'http://localhost:5000'
+   // api_url = 'http://192.168.0.7:5000'
+   api_url = 'http://localhost:5000'
 
    checkLocalStorage = () => {
      const local = localStorage.getItem('twitter_username')
      if (local) {
-       console.log(local)
-       this.twitter_username = local
        this.authenticated = true
        store.authenticated = true
+       this.twitter_username = local
        this.getTwitterUserData(local)
      }
    }
@@ -53,13 +52,12 @@ import store from '../../../stores/store'
        if (await data_json) {
          const twitter = {
            screen_name: await data_json[0].screen_name,
-           profile_image: await data_json[0].profile_image_url_https,
-           favorites_total: await data_json[0].favourites_count,
            following: await data_json[0].friends_count,
+           posts_count: await data_json[0].statuses_count,
            followed_by: await data_json[0].followers_count,
-           posts_count: await data_json[0].statuses_count
+           favorites_total: await data_json[0].favourites_count,
+           profile_image: await (data_json[0].profile_image_url_https).replace('_normal', '')
          }
-         console.log(twitter)
          this.twitter_user_data = twitter
          this.getTwitterPosts(username)
        }
@@ -75,6 +73,7 @@ import store from '../../../stores/store'
        const data_json = await data.json()
        this.twitter_posts_data = await data_json
        if (await data_json) {
+         console.log(data_json)
          this.getTwitterTotals()
        }
      } catch(e) {
@@ -95,8 +94,7 @@ import store from '../../../stores/store'
        retweets += Number(p.retweet_count)
      })
 
-     const engagement_rate = ((favorites_total + retweets) / followers_total)
-     console.log('twitter rate: ', engagement_rate)
+     const engagement_rate = (((favorites_total + retweets) / followers_total) / user_posts.length)
      const twitter_rates = {
        twitter_avg_favorites: Math.round(favorites / user_posts.length),
        twitter_avg_retweets: Math.round(retweets / user_posts.length),
@@ -107,7 +105,6 @@ import store from '../../../stores/store'
        twitter_following: user_data.following,
        twitter_total_posts: user_data.posts_count
      }
-     console.log(twitter_rates)
      this.twitter_rates = twitter_rates
      this.twitter_loading = false
      store.calculateRatings()
@@ -129,27 +126,27 @@ import store from '../../../stores/store'
    }
 
    handleLogout = () => {
-     this.twitter_username = null
      this.authenticated = false
+     this.twitter_username = null
      localStorage.removeItem('twitter_username')
    }
  }
 
  decorate(Twitter, {
    authenticated: observable,
+   twitter_rates: observable,
+   twitter_toggle: observable,
    twitter_loading: observable,
+   twitter_username: observable,
+   twitter_averages: observable,
    twitter_user_data: observable,
    twitter_posts_data: observable,
-   twitter_averages: observable,
-   twitter_rates: observable,
-   twitter_username: observable,
-   twitter_toggle: observable,
-   checkLocalStorage: action,
-   getTwitterUserData: action,
+   handleLogout: action,
    getTwitterPosts: action,
    getTwitterTotals: action,
-   handleTwitterNavToggles: action,
-   handleLogout: action
+   checkLocalStorage: action,
+   getTwitterUserData: action,
+   handleTwitterNavToggles: action
  })
 
  const twitter = new Twitter()

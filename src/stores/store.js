@@ -24,20 +24,15 @@ class Store {
     global_percent: 0
   }
 
-  checkPreviousAuth() {
-    this.checkAuth()
-  }
-
-  checkAuth = () => {
-    instagram.checkInstagramAuth()
+  checkAuth() {
     twitter.checkLocalStorage()
+    instagram.checkInstagramAuth()
     if (twitter.username) twitter.initializeStore()
   }
 
   getUserTotals = (posts, user) => {
-    const followers = user.data.counts.followed_by
-    const following = user.data.counts.follows
-    console.log(user.data)
+    const following = user.data.counts.follows,
+          followers = user.data.counts.followed_by
     let likes = 0,
         comments = 0
 
@@ -54,16 +49,15 @@ class Store {
           engagement_avg = (((avg_likes + avg_comments) / followers) * 0.1).toFixed(2)
 
     const user_stats = {
-      likes_avg: Number(avg_likes),
-      comments_avg: this.formatNum(Number(avg_comments)),
-      likes_total: total_likes,
-      comments_total: this.formatNum(total_comments),
-      followers: followers,
       following: following,
+      followers: followers,
+      likes_total: total_likes,
+      likes_avg: Number(avg_likes),
+      total_posts: user.data.counts.media,
       engagement_avg: Number(engagement_avg),
-      total_posts: user.data.counts.media
+      comments_total: this.formatNum(total_comments),
+      comments_avg: this.formatNum(Number(avg_comments))
     }
-    console.log(user_stats)
     return user_stats
   }
 
@@ -79,13 +73,13 @@ class Store {
     let avg = 5.00,
         ig = instagram ? mobx.toJS(instagram.user_stats) : 0,
         tw = twitter ? mobx.toJS(twitter.twitter_rates) : 0,
-        rates = [instagram ? ig.engagement_avg : null, twitter ? tw.twitter_engagement_rate_all : null, null],
+        rates = [instagram ? ig.engagement_avg : null, twitter ? tw.twitter_engagement_rate_all : null],
         count = 0,
         sum = rates.reduce((sum, item) => {
           return count += item
         }, 0),
         rate = sum / rates.length,
-        likes = [instagram.authenticated ? ig.likes_total : 0, twitter.authenticated ? tw.total_favorites : 0, 0],
+        likes = [instagram.authenticated ? ig.likes_total : 0, twitter.authenticated ? tw.total_favorites : 0],
         total_likes_count = 0,
         total_likes_global = likes.reduce((sum, item) => {
           return total_likes_count += item
@@ -97,23 +91,21 @@ class Store {
 
 
     const global_rates = {
+      global_engagement_avg: rate.toFixed(2),
       global_rate: (5 * ((rate / avg) * 0.5)).toFixed(3),
       global_percent: (((rate / avg) * 0.5) * 100).toFixed(2),
-      global_engagement_avg: rate.toFixed(2),
-      global_total_likes: this.formatNum(Number(total_likes_global)),
-      global_average_likes: this.formatNum(Number(average_likes_global.toFixed(0))),
       global_total_posts: this.formatNum(Number(total_posts)),
       global_total_followers: this.formatNum(total_followers),
-      global_total_following: this.formatNum(Number(total_following))
+      global_total_likes: this.formatNum(Number(total_likes_global)),
+      global_total_following: this.formatNum(Number(total_following)),
+      global_average_likes: this.formatNum(Number(average_likes_global.toFixed(0)))
     }
-    console.log('global rates', global_rates)
     this.global_rates = global_rates
   }
 
   getCurrentToggles = () => {
     const local = localStorage.getItem('gage_toggles')
     if (local) {
-      console.log('local: ', mobx.toJS(local))
       this.toggle = local
     } else {
       window.localStorage.setItem('gage_toggles', mobx.toJS(this.toggles))

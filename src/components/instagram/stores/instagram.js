@@ -9,10 +9,10 @@ class Instagram {
 
   user_stats = {
     likes_avg: 0,
-    comments_avg: 0,
-    likes_total: 0,
-    comments_total: 0,
     followers: 0,
+    likes_total: 0,
+    comments_avg: 0,
+    comments_total: 0,
     engagement_avg: 0
   }
 
@@ -21,8 +21,8 @@ class Instagram {
     global_percent: 0
   }
 
-  // api_url = 'http://localhost:5000'
-  api_url = 'http://192.168.0.7:5000'
+  api_url = 'http://localhost:5000'
+  // api_url = 'http://192.168.0.7:5000'
   login_url = `${this.api_url}/auth/instagram`
 
   checkInstagramAuth = async () => {
@@ -62,7 +62,7 @@ class Instagram {
             data_json = await data.json()
       this.instagram_post_data = await data_json
       if (await data_json) this.getTotalStats()
-      if (await data_json.meta.code === 400) this.handleLogout()
+      if (await data_json.meta.code === 400) this.authenticated = false
     } catch(e) {
       console.error(e)
     }
@@ -75,7 +75,7 @@ class Instagram {
       const data_json = await data.json()
       this.instagram_user_data = await data_json
       if (await data_json.meta.code === 400) {
-        this.handleLogout()
+        this.authenticated = false
       }
     } catch(e) {
       console.error(e)
@@ -83,7 +83,7 @@ class Instagram {
   }
 
   getTotalStats = () => {
-    if (this.instagram_post_data) {
+    if (this.instagram_post_data && this.authenticated) {
       const data = mobx.toJS(this.instagram_post_data),
             data_posts = data.data,
             user = mobx.toJS(this.instagram_user_data)
@@ -104,14 +104,15 @@ class Instagram {
 }
 
 decorate(Instagram, {
+  rates: observable,
+  login_url: observable,
+  user_stats: observable,
   authenticated: observable,
   instagram_post_data: observable,
   instagram_user_data: observable,
-  user_stats: observable,
-  rates: observable,
-  initializeStoreData: action,
   handleLogin: action,
-  handleLogout: action
+  handleLogout: action,
+  initializeStoreData: action
 })
 
 const instagram = new Instagram()

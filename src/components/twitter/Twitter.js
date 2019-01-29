@@ -23,9 +23,9 @@ const Twitter = observer(
           return <Loader />
         } else {
           if (twitter.twitter_toggle.user) {
-            const data = mobx.toJS(twitter.twitter_user_data)
-            const posts = mobx.toJS(twitter.twitter_posts_data)
-            const averages = mobx.toJS(twitter.twitter_averages)
+            const data = mobx.toJS(twitter.twitter_user_data),
+                  posts = mobx.toJS(twitter.twitter_posts_data),
+                  averages = mobx.toJS(twitter.twitter_averages)
             return (
               <div className='social__container'>
                 <NavTabs selected_service='twitter' />
