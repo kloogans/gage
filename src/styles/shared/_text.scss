@@ -39,6 +39,14 @@
     &--heavy {
       font-weight: $font--thick;
     }
+
+    &--x-heavy {
+      font-weight: 600;
+    }
+  }
+
+  &--white {
+    color: white;
   }
 
   &__margin {

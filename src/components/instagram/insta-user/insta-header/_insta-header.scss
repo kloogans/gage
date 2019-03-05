@@ -1,0 +1,24 @@
+.insta-header {
+  @include flex(column, center, center);
+  width: 100%;
+  background-color: lighten($black, 75%);
+  padding: 15px 0;
+
+  &__image-wrapper {
+    @include size(100px, 100px);
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      @include size(102px, 102px);
+    }
+  }
+
+  &__username {
+    margin: 7px 0;
+    font-size: 0.9rem;
+    font-family: $font-family--main;
+    font-weight: $font--thick;
+    color: $black;
+  }
+}

@@ -1,15 +1,6 @@
 @import '../../styles/utils/variables';
 
 .footer {
-
-  &__container {
-    position: absolute;
-    bottom: 5px;
-
-    p {
-      font-family: $font-family--main;
-      color: white;
-      font-size: 0.8rem;
-    }
-  }
+  position: absolute;
+  bottom: 5px;
 }

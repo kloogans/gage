@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
-import RatingRing from '../rating-ring/RatingRing'
 
 const EngagementBox = observer(p => (
   <div className='engagement-box'>
@@ -12,7 +11,7 @@ const EngagementBox = observer(p => (
           </div>
         ) : null
     }
-    <RatingRing rates={p.rates} number_type={p.number_type} />
+    <p>{p.rates}%</p>
   </div>
 ))
 

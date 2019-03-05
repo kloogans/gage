@@ -1,17 +1,13 @@
+@import './insta-grid/insta-grid';
 @import '../../styles/utils/mixins';
 @import '../../styles/utils/variables';
 
-@import './insta-grid/insta-grid';
 
 .instagram {
+  @include flex(column, flex-start, center);
+  @include size(100%, calc(100vh - 50px))
 
-  &__container {
-    @include flex(column, flex-start, center);
-    width: 100%;
-    height: calc(100vh - 50px);
-  }
-
-  &__content-wrapper {
+  &__content {
     @include flex(column, flex-start, center);
     @include size(100%, 100%);
     padding: 10px;
@@ -20,5 +16,12 @@
     @media (max-width: 768px) {
       padding: 10px 0 0 0;
     }
+  }
+
+  &__stats {
+    @include flex(column, flex-start, center);
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
   }
 }

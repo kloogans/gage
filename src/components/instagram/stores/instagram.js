@@ -3,7 +3,6 @@ import * as mobx from 'mobx'
 import store from '../../../stores/store'
 
 class Instagram {
-  authenticated = false
   instagram_post_data = null
   instagram_user_data = null
 
@@ -21,31 +20,25 @@ class Instagram {
     global_percent: 0
   }
 
-  api_url = 'http://localhost:5000'
-  // api_url = 'http://192.168.0.7:5000'
-  login_url = `${this.api_url}/auth/instagram`
+  api_url = 'https://api.instagram.com/v1/users/self'
+  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=http://localhost:3001/callback&response_type=token`
 
-  checkInstagramAuth = async () => {
-    const url =`${this.api_url}/api/check-auth`,
-          local = localStorage.getItem('access_token')
-    try {
-      const data = await fetch(url)
-      const data_json = await data.json()
-      if (data_json.authenticated_ig || local) {
-        if (local) {
-          this.authenticated = true
-          store.authenticated = true
-          this.access_token = local
-        } else {
-          this.authenticated = true
-          store.authenticated = true
-          this.access_token = data_json.access_token
-          window.localStorage.setItem('access_token', data_json.access_token)
-        }
-        instagram.initializeStore()
+  checkInstagramAuth = () => {
+    let path = window.location.hash,
+        local = localStorage.getItem('access_token')
+    path = path.split('=').pop()
+    if (local || path.length > 0) {
+      if (local) {
+        store.access_token = local
+        store.authenticated = true
+      } else {
+        store.access_token = path
+        store.authenticated = true
+        window.localStorage.setItem('access_token', path)
       }
-    } catch(e) {
-      console.error(e)
+      this.initializeStore()
+    } else {
+      store.authenticated = false
     }
   }
 
@@ -56,26 +49,26 @@ class Instagram {
 
 
   getUserPostsInsta = async () => {
-    const url = `${this.api_url}/api/instagram/self/posts`
+    const url = `${this.api_url}/media/recent?access_token=${store.access_token}`
     try {
       const data = await fetch(url),
             data_json = await data.json()
       this.instagram_post_data = await data_json
       if (await data_json) this.getTotalStats()
-      if (await data_json.meta.code === 400) this.authenticated = false
+      if (await data_json.meta.code === 400) store.authenticated = false
     } catch(e) {
       console.error(e)
     }
   }
 
   getUserDataInsta = async () => {
-    const url = `${this.api_url}/api/instagram/self`
+    const url = `${this.api_url}?access_token=${store.access_token}`
     try {
       const data = await fetch(url)
       const data_json = await data.json()
       this.instagram_user_data = await data_json
       if (await data_json.meta.code === 400) {
-        this.authenticated = false
+        store.authenticated = false
       }
     } catch(e) {
       console.error(e)
@@ -83,13 +76,12 @@ class Instagram {
   }
 
   getTotalStats = () => {
-    if (this.instagram_post_data && this.authenticated) {
+    if (this.instagram_post_data && store.authenticated) {
       const data = mobx.toJS(this.instagram_post_data),
             data_posts = data.data,
             user = mobx.toJS(this.instagram_user_data)
 
       this.user_stats = store.getUserTotals(data_posts, user)
-      store.calculateRatings()
     }
   }
 
@@ -98,8 +90,7 @@ class Instagram {
   handleLogout = () => {
     this.access_token = null
     localStorage.removeItem('access_token')
-    this.authenticated = false
-    window.location.href = (`${this.api_url}/auth/instagram/logout`)
+    store.authenticated = false
   }
 }
 
@@ -107,7 +98,6 @@ decorate(Instagram, {
   rates: observable,
   login_url: observable,
   user_stats: observable,
-  authenticated: observable,
   instagram_post_data: observable,
   instagram_user_data: observable,
   handleLogin: action,

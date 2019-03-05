@@ -2,25 +2,20 @@
 @import './utils/variables';
 @import './utils/animations';
 
-@import './shared/social-section';
 @import './shared/text';
 
 // Components
 @import '../components/top-bar/top-bar';
 @import '../components/instagram/instagram';
-@import '../components/twitter/twitter';
+@import '../components/instagram/insta-user/insta-header/insta-header';
+@import '../components/instagram/insta-user/insta-user-counts/insta-user-counts';
+@import '../components/instagram/insta-user/insta-media-counts/insta-media-counts';
 @import '../components/menu/menu';
 @import '../components/login/login';
 @import '../components/loader/loader';
 @import '../components/nav-tabs/nav-tabs';
 @import '../components/footer/footer';
-@import '../components/dashboard/dashboard';
-
-@import '../components/shared/rating-ring/rating-ring';
 @import '../components/shared/engagement-box/engagement-box';
-@import '../components/shared/service-placeholder/service-placeholder';
-
-@import '../containers/service/service';
 
 
 // Fonts

@@ -1,5 +1,4 @@
 import React from 'react'
-import ContentLoader from 'react-content-loader'
 
 const Loader = props => (
     <div className='loader__wrapper animate__fade-in'>
