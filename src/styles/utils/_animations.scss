@@ -27,7 +27,7 @@
   to { opacity: 1; }
 }
 
-@keyframes warpedBackground {
+@keyframes movingGradient {
     0%{background-position:500% 100%}
     50%{background-position:600% 100%}
     100%{background-position:500% 100%}

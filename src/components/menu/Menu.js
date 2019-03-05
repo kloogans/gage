@@ -1,37 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
 import store from '../../stores/store'
 import instagram from '../instagram/stores/instagram'
 
-const Menu = observer(
-  class Menu extends Component {
-
-    handleLogoutAll = () => {
-      instagram.handleLogout()
-      store.authenticated = false
-      localStorage.clear()
-    }
-
-    render() {
-      return (
-        <div className={store.toggle.menu ? 'menu__wrapper animate__fade-in': 'app--remove'}>
-          <div className='menu__inner'>
-            <div className='menu__top-bar'>
-              <button onClick={store.toggleMenu}>
-                <i className='fas fa-times' />
-              </button>
-            </div>
-            <div className='menu__buttons'>
-              <button onClick={this.handleLogoutAll}>
-                Logout All
-              </button>
-            </div>
-          </div>
+const Menu = observer(() => {
+  const handleLogoutAll = () => instagram.handleLogout()
+  return (
+    <div className={store.toggle.menu ? 'menu__wrapper animate__fade-in': 'app--remove'}>
+      <div className='menu__inner'>
+        <div className='menu__top-bar'>
+          <button className='menu__button--close' onClick={store.toggleMenu}>
+            <i className='fas fa-times' />
+          </button>
         </div>
-      )
-    }
-
-  }
-)
+        <button className='menu__button' onClick={handleLogoutAll}>
+          Logout
+        </button>
+      </div>
+    </div>
+  )
+})
 
 export default Menu

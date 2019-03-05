@@ -3,65 +3,44 @@
 
 
 .login {
+  @include flex(column, center, center);
+  @include size(100%, $app-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(130deg, rgb(1, 225, 255) 0%, rgb(255, 1, 138) 100%);
+  background-size: 500% 100%;
+  animation: warpedBackground 30s ease infinite;
+  z-index: 50;
 
-  &__container {
-    @include flex(column, center, center);
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: $app-height;
-    background: linear-gradient(130deg, rgb(1, 225, 255) 0%, rgb(255, 1, 138) 100%);
-    background-size: 500% 100%;
-    animation: warpedBackground 30s ease infinite;
-    z-index: 50;
-
-    h1 {
-      margin-top: 0;
-      font-family: $font-family--display;
-      color: white;
-      font-size: 4rem;
-    }
-
-    button, a {
-      @include flex(row, center, center);
-      min-width: 200px;
-      min-height: 200px;
-      margin: 0 10px;
-      padding: 15px 30px;
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 3px;
-      text-align: center;
-      font-family: $font-family--main;
-      font-size: 2rem;
-      font-weight: $font--thick;
-      color: white;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-
-      &:focus,
-      &:hover {
-        color: rgb(1, 225, 255);
-        border-color: rgb(1, 225, 255);
-      }
-
-      @media (max-width: 768px) {
-        margin: 7px 0;
-      }
-
-      span {
-        margin-bottom: 2px;
-      }
-    }
+  &__logo {
+    margin-top: 0;
+    font-family: $font-family--display;
+    color: white;
+    font-size: 4rem;
   }
 
-  &__buttons {
+  &__button {
     @include flex(row, center, center);
+    min-width: 200px;
+    margin: 0 10px;
+    padding: 15px 30px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 3px;
+    text-align: center;
+    font-family: $font-family--main;
+    font-size: 2rem;
+    font-weight: $font--thick;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 
-    @media (max-width: 768px) {
-      flex-direction: column;
+    &:focus,
+    &:hover {
+      color: rgb(1, 225, 255);
+      border-color: rgb(1, 225, 255);
     }
   }
 }

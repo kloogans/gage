@@ -1,98 +1,85 @@
-@import '../../styles/utils/mixins';
-
 .loader {
+  @include flex(column, flex-start, center);
+  width: 100%;
 
-  &__wrapper {
-    @include flex(column, flex-start, center);
-    width: 100%;
+  h3 {
+    @include flex(row, center, center);
+    @include size(30px, 30px);
+    position: relative;
+    top: -5px;
+    margin: 0;
+    padding: 0;
+    font-family: $font-family--display;
+    font-size: 2rem;
+    color: white;
+    transform-origin: center;
+  }
 
-    h3 {
-      @include flex(row, center, center);
-      position: relative;
-      top: -5px;
-      font-family: $font-family--display;
-      font-size: 2rem;
-      width: 30px;
-      height: 30px;
-      color: white;
-      padding: 0;
-      margin: 0;
-      transform-origin: center;
+  &__shapes {
+    @include flex(column, center, center);
+    filter: url("#logo-blur");
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    transform-origin: center;
+  }
+
+  &__shape {
+    @include size(70px, 70px);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 50%;
+    background-color: $blue;
+    transform-origin: center;
+
+    &:nth-child(1) {
+      animation: shape-left cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
     }
-
-    .st0{fill:#FFFFFF;}
-
-    .blobs {
-      @include flex(column, center, center);
-      -webkit-filter: url("#goo");
-      filter: url("#goo");
-      position: absolute;
-      top:0;
-      left:0;
-      bottom:0;
-      right:0;
-      transform-origin: center;
-    }
-    .blob {
-      position: absolute;
-      margin: auto;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: blue;
-      transform-origin: center;
-    }
-    .blob:nth-child(1) {
-      animation: blob-left-anim cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
-    }
-    .blob:nth-child(2) {
-      animation: blob-right-anim cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
-    }
-
-    @keyframes blob-left-anim {
-      0% {transform:scale(1.0) translate(0, 0); background-color: $blue;}
-      16% {transform:scale(0.55, 0.5) translate(80px, 0);}
-      33% {transform:scale(0.8) translate(0, 0);}
-      50% {transform:scale(1.0) translate(0, 0); background-color: $purple;}
-      66% {transform:scale(0.8) translate(0, 0);}
-      83% {transform:scale(1) translate(0, 0);}
-      100% {transform:scale(1.0) translate(0, 0); background-color: $blue;}
-    }
-
-
-    @keyframes blob-right-anim {
-      0% {transform:scale(1.0) translate(0, 0); background-color: $pink;}
-      16% {transform:scale(0.55, 0.5) translate(-80px, 0);}
-      33% {transform:scale(0.8) translate(0, 0);}
-      50% {transform:scale(1.0) translate(0, 0); background-color: $purple;}
-      // 88% {transform:scale(1) translate(0, 0);}
-      100% { transform:scale(1.0) translate(0, 0); background-color: $pink; }
-    }
-
-    @keyframes apester {
-      0% {transform:scale(1.0); opacity:1;}
-      40% {transform:scale(0.5); opacity:0;}
-      80% {transform:scale(0.9); opacity:1;}
-      100% {transform:scale(1.0); opacity:1;}
-    }
-
-    .apester {
-      position: relative;
-      // width: 100%;
-      // height: 100%;
-      @include flex(row, center, center);
-      transform-origin: center;
-      animation: apester cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
-    }
-
-    .apester svg {
-      height: 100%;
-      width: 100%;
+    &:nth-child(2) {
+      animation: shape-right cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
     }
   }
 
+  &__logo-text {
+    position: relative;
+    @include flex(row, center, center);
+    transform-origin: center;
+    animation: logo-text cubic-bezier(0.770, 0.000, 0.175, 1.000) 3s infinite;
+
+    svg {
+      @include size(100%, 100%);
+    }
+  }
+}
+
+@keyframes shape-left {
+  0% {transform:scale(1.0) translate(0, 0); background-color: $blue;}
+  16% {transform:scale(0.55, 0.5) translate(80px, 0);}
+  33% {transform:scale(0.8) translate(0, 0);}
+  50% {transform:scale(1.0) translate(0, 0); background-color: $purple;}
+  66% {transform:scale(0.8) translate(0, 0);}
+  83% {transform:scale(1) translate(0, 0);}
+  100% {transform:scale(1.0) translate(0, 0); background-color: $blue;}
+}
+
+
+@keyframes shape-right {
+  0% {transform:scale(1.0) translate(0, 0); background-color: $pink;}
+  16% {transform:scale(0.55, 0.5) translate(-80px, 0);}
+  33% {transform:scale(0.8) translate(0, 0);}
+  50% {transform:scale(1.0) translate(0, 0); background-color: $purple;}
+  100% { transform:scale(1.0) translate(0, 0); background-color: $pink; }
+}
+
+@keyframes logo-text {
+  0% {transform:scale(1.0); opacity:1;}
+  40% {transform:scale(0.5); opacity:0;}
+  80% {transform:scale(0.9); opacity:1;}
+  100% {transform:scale(1.0); opacity:1;}
 }

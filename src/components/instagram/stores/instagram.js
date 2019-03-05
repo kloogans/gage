@@ -88,8 +88,7 @@ class Instagram {
   handleLogin = () => window.location.href = this.login_url
 
   handleLogout = () => {
-    this.access_token = null
-    localStorage.removeItem('access_token')
+    localStorage.clear()
     store.authenticated = false
   }
 }

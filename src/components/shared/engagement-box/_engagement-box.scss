@@ -11,7 +11,7 @@
   border-radius: 3px;
   background: linear-gradient(290deg, #06defc 0%, #fc06c6 100%);
   background-size: 500% 100%;
-  animation: warpedBackground 30s ease infinite;
+  animation: movingGradient 30s ease infinite;
 
   @media screen and (orientation:landscape) {
     min-height: 327px;
@@ -21,24 +21,23 @@
     border-radius: 0;
   }
 
-  &__service-icon {
+  &__social-icon {
     @include flex(row, center, center);
     width: 100%;
-
-    i {
-      position: absolute;
-      top: 0;
-      font-size: 1.5rem;
-      color: white;
-      padding-top: 25px;
-    }
+    position: absolute;
+    top: 0;
+    font-size: 1.5rem;
+    color: white;
+    padding-top: 25px;
   }
 
-  p {
+  &__rate {
     @include flex(row, center, center);
-    font-size: 0.8rem;
-    font-family: $font-family--main;
+    @include size(100%, 100%);
     color: white;
-    margin: 0;
+    font-family: $font-family--main;
+    font-size: 2.5rem;
+    font-weight: $font--thin;
+    letter-spacing: -1px;
   }
 }
