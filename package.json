@@ -48,7 +48,7 @@
     "react-app-polyfill": "^0.2.0",
     "react-circular-progressbar": "^1.0.0",
     "react-content-loader": "^3.4.1",
-    "react-countup": "^4.0.0",
+    "react-countup": "^4.1.1",
     "react-dev-utils": "^7.0.0",
     "react-div-100vh": "^0.3.2",
     "react-dom": "^16.7.0",
