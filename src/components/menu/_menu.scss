@@ -17,6 +17,10 @@
     background: linear-gradient(-130deg, $blue, $pink);
     background-size: 280% 130%;
     color: white;
+
+    @media (min-width: 769px) {
+      background: white;
+    }
   }
 
   &__top-bar {
@@ -43,6 +47,10 @@
     &:hover {
       transform: scale(1.1);
     }
+
+    @media (min-width: 769px) {
+      color: $black;
+    }
   }
 
   &__button {
@@ -59,11 +67,14 @@
     text-decoration: none;
     transition: all 0.3s ease;
 
-
     &:focus,
     &:hover {
       border-color: $blue;
       color: $blue;
+    }
+
+    @media (min-width: 769px) {
+      color: $black;
     }
   }
 }

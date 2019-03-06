@@ -2,60 +2,59 @@
 @import '../../../../styles/utils/variables';
 
 .grid-item {
+  @include flex(row, center, center);
+  position: relative;
+  flex: 1;
+  max-height: 200px;
 
-  &__container {
-    @include flex(row, center, center);
-    position: relative;
-    flex: 1;
-    max-height: 200px;
-    animation: fade-in--up 0.6s ease;
+  @media (max-width: 399px) {
+    max-height: 100%;
+  }
+
+  &:focus,
+  &:hover {
+    .grid-item__analytics {
+      opacity: 1;
+    }
+  }
+
+  &--animate-in {
+    animation: fade-in-left 0.6s ease;
     animation-fill-mode: both;
+  }
+
+  @for $i from 1 through $total-images {
+    &:nth-child(#{$i}) {
+      animation-delay: .03s * $i;
+    }
+  }
+
+  img {
+    min-width: 200px;
+    width: 100%;
+    min-height: 200px;
+    font-family: $font-family--main;
+    color: $black;
+    font-size:0.9rem;
+    object-fit: cover;
 
     @media (max-width: 399px) {
-      max-height: 100%;
+      min-height: 185px;
+      min-width: 185px;
     }
 
-    &:focus,
-    &:hover {
-      .grid-item__analytics {
-        opacity: 1;
-      }
+    @media (max-width: 369px) {
+      min-height: 100%;
     }
+  }
 
-    @for $i from 1 through $total-images {
-      &:nth-child(#{$i}) {
-        animation-delay: .02s * $i;
-      }
-    }
-
-    img {
-      min-width: 200px;
-      width: 100%;
-      min-height: 200px;
-      font-family: $font-family--main;
-      color: $black;
-      font-size:0.9rem;
-      object-fit: cover;
-
-      @media (max-width: 399px) {
-        min-height: 185px;
-        min-width: 185px;
-      }
-
-      @media (max-width: 369px) {
-        min-height: 100%;
-      }
-    }
-
-    .engagement-title {
-      @include flex(row, center, center);
-      @include size(100%, 50%);
-      font-family: $font-family--main;
-      font-size: 1.65rem;
-      font-weight: $font--thick;
-      color: white;
-      // flex: 1;
-    }
+  .engagement-title {
+    @include flex(row, center, center);
+    @include size(100%, 50%);
+    font-family: $font-family--main;
+    font-size: 1.65rem;
+    font-weight: $font--thick;
+    color: white;
   }
 
   &__image {

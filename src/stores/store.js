@@ -7,6 +7,10 @@ class Store {
   history = createBrowserHistory()
 
   hide_tabs = false
+  animate = {
+    left: false,
+    right: true
+  }
 
   toggle = {
     user: true,
@@ -14,17 +18,20 @@ class Store {
     menu: false
   }
 
+  local = 'http://localhost:3001/callback'
+  prod = 'https://gage.jamesobrien.io/callback'
+
   api_url = 'https://api.instagram.com/v1/users/self'
-  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=https://gage.jamesobrien.io/callback&response_type=token`
+  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=${this.local}&response_type=token`
 
   initializeStore() {
     this.getUserPostsInsta()
     this.getUserDataInsta()
 
-    setInterval(() => {
-      this.getUserPostsInsta()
-      this.getUserDataInsta()
-    }, 60000)
+    // setInterval(() => {
+    //   this.getUserPostsInsta()
+    //   this.getUserDataInsta()
+    // }, 60000)
   }
 
   checkInstagramAuth = () => {
@@ -82,6 +89,10 @@ class Store {
   }
 
   toggleInstaGrid = () => {
+    this.animate = {
+      left: true,
+      right: false
+    }
     this.toggle = {
       user: false,
       grid: true,
@@ -90,6 +101,10 @@ class Store {
   }
 
   toggleInstaUser = () => {
+    this.animate = {
+      left: false,
+      right: true
+    }
     this.toggle = {
       user: true,
       grid: false,
@@ -110,6 +125,7 @@ decorate(Store, {
   user_stats: observable,
   hide_tabs: observable,
   toggle: observable,
+  animate: observable,
   handleLogin: action,
   handleLogout: action,
   toggleInstaGrid: action,

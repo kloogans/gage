@@ -8,8 +8,8 @@
   @include size(100%, calc(100vh - 50px))
 
   &__content {
-    @include flex(column, flex-start, center);
-    @include size(100%, 100%);
+    @include flex(row, flex-start, center);
+    @include size(200%, 100%);
     padding: 10px;
     box-sizing: border-box;
 

@@ -6,4 +6,5 @@
   @include flex(row, center, center);
   width: 100%;
   flex-wrap: wrap;
+  overflow-y: auto;
 }

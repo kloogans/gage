@@ -7,7 +7,7 @@ import store from '../../../../stores/store'
       const item = {...this.props},
             engagement = ((item.likes + item.comments) / item.followers) * 100
       return (
-        <div className='grid-item__container'>
+        <div className='grid-item'>
           <div className='grid-item__image'>
             <img src={item.imgUrl} alt={'A photo by ' + item.username} />
           </div>

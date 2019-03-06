@@ -19,6 +19,7 @@ body,
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   box-sizing: border-box;
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     display: none;
@@ -39,6 +40,7 @@ body,
     @include flex(column, center, center);
     @include size(100%, 100%);
     max-width: 768px;
+    overflow-y: hidden;
   }
 
   &__content {
@@ -50,6 +52,7 @@ body,
   &__section {
     @include flex(column, flex-start, center);
     @include size(100%, 100%);
+    transition: all 0.6s ease;
   }
 
   &--show {

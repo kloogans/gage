@@ -9,12 +9,17 @@ import store from '../../../stores/store'
 
 const InstaUser = observer(props => {
 
+  const style = {
+    transform: `translateX(${store.animate.right ? '50%' : '-60%'})`,
+    opacity: store.animate.right ? 1 : 0
+  }
+
   if (instagram.instagram_user_data) {
     const ig = instagram.instagram_user_data.data,
           stats = instagram.user_stats
 
     return (
-      <div className='app__section animate__fade-in--long'>
+      <div style={style} className='app__section'>
 
         <InstaHeader
             img={ig.profile_picture}
