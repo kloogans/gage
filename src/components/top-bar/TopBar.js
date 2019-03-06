@@ -5,6 +5,9 @@ import { observer } from 'mobx-react'
 const TopBar = observer(() => (
     <nav className='top-bar'>
       <div className='top-bar__inner'>
+        <button className='top-bar__button'>
+          <i className='fas fa-cog' />
+        </button>
         <h1 className='top-bar__logo'
             onClick={store.scrollToTop}>
           gage

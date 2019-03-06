@@ -1,10 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import store from '../../stores/store'
-import instagram from '../instagram/stores/instagram'
 
 const Menu = observer(() => {
-  const handleLogoutAll = () => instagram.handleLogout()
+  const handleLogoutAll = () => store.handleLogout()
   return (
     <div className={store.toggle.menu ? 'menu__wrapper animate__fade-in': 'app--remove'}>
       <div className='menu__inner'>

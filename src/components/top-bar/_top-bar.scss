@@ -22,7 +22,7 @@
   &__logo {
     @include flex(row, center, center);
     flex: 1;
-    margin: 0 0 0 31.61px;
+    margin: 0;
     padding-bottom: 5px;
     font-family: $font-family--display;
     color: $black;

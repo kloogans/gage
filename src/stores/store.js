@@ -22,7 +22,7 @@ class Store {
     setInterval(() => {
       this.getUserPostsInsta()
       this.getUserDataInsta()
-    }, 6000)
+    }, 60000)
   }
 
   checkInstagramAuth = () => {
@@ -107,6 +107,8 @@ decorate(Store, {
   user_stats: observable,
   hide_tabs: observable,
   toggle: observable,
+  handleLogin: action,
+  handleLogout: action,
   toggleInstaGrid: action,
   toggleInstaUser: action,
   toggleMenu: action,

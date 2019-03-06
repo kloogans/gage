@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import store from './stores/store'
 import TopBar from './components/top-bar/TopBar'
 import Instagram from './components/instagram/Instagram'
@@ -16,23 +17,22 @@ const App = observer(
     }
 
     render() {
-      console.log(store.authenticated)
       return (
-        <Div100vh>
-          <div className='app'>
-            <div className='app__inner'>
-              <TopBar />
-              <Menu />
-              <main className='app__content'>
-                {
-                  store.authenticated
-                   ? <Instagram />
-                   : <Login />
-                }
-              </main>
+        <Router>
+          <Div100vh>
+            <div className='app'>
+              <div className='app__inner'>
+                <TopBar />
+                <Menu />
+                <main className='app__content'>
+                  <Route exact path='/'
+                         component={store.authenticated ? Instagram : Login} />
+
+                </main>
+              </div>
             </div>
-          </div>
-        </Div100vh>
+          </Div100vh>
+        </Router>
       )
     }
   }

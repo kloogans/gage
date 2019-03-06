@@ -1,11 +1,11 @@
 import React from 'react'
-import instagram from '../instagram/stores/instagram'
+import store from '../../stores/store'
 import Footer from '../footer/Footer'
 
 const Login = () => (
   <div className='login'>
     <h1 className='login__logo'>gage</h1>
-    <button onClick={instagram.handleLogin}
+    <button onClick={store.handleLogin}
             className='login__button'
             title='Login with Instagram'>
       <i className='fab fa-instagram' />
