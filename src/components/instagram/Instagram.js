@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { withRouter } from "react-router-dom"
 import store from '../../stores/store'
 import instagram from './stores/instagram'
 import InstaGrid from './insta-grid/InstaGrid'
@@ -12,6 +13,7 @@ const Instagram = observer(
 
     componentDidMount() {
       this.props.history.push('/')
+      console.log('pushed')
     }
 
     render() {
@@ -35,4 +37,4 @@ const Instagram = observer(
   }
 )
 
-export default Instagram
+export default withRouter(Instagram)

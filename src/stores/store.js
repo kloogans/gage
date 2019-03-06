@@ -1,8 +1,10 @@
 import { observable, action, decorate } from 'mobx'
 import instagram from '../components/instagram/stores/instagram'
+import createBrowserHistory from 'history/createBrowserHistory'
 
 class Store {
   authenticated = false
+  history = createBrowserHistory()
 
   hide_tabs = false
 
@@ -13,7 +15,7 @@ class Store {
   }
 
   api_url = 'https://api.instagram.com/v1/users/self'
-  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=http://localhost:3001/callback&response_type=token`
+  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=https://gage.jamesobrien.io/callback&response_type=token`
 
   initializeStore() {
     this.getUserPostsInsta()
@@ -37,6 +39,7 @@ class Store {
         this.access_token = path
         this.authenticated = true
         window.localStorage.setItem('access_token', path)
+        this.history.push('/')
       }
       this.initializeStore()
     } else {
