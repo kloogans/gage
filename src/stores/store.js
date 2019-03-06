@@ -12,39 +12,70 @@ class Store {
     menu: false
   }
 
-  checkAuth() {
-    instagram.checkInstagramAuth()
+  api_url = 'https://api.instagram.com/v1/users/self'
+  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=http://localhost:3001/callback&response_type=token`
+
+  initializeStore() {
+    this.getUserPostsInsta()
+    this.getUserDataInsta()
+
+    setInterval(() => {
+      this.getUserPostsInsta()
+      this.getUserDataInsta()
+    }, 6000)
   }
 
-  getUserTotals = (posts, user) => {
-    const following = user.data.counts.follows,
-          followers = user.data.counts.followed_by
-    let likes = 0,
-        comments = 0
-
-    posts.map(post => {
-      likes += post.likes.count
-      comments += post.comments.count
-      return null
-    })
-
-    const avg_likes = (likes / posts.length).toFixed(0),
-          avg_comments = (comments / posts.length).toFixed(0),
-          total_likes = likes,
-          total_comments = comments,
-          engagement_avg = (((avg_likes + avg_comments) / followers) * 0.1).toFixed(2)
-
-    const user_stats = {
-      following: following,
-      followers: followers,
-      likes_total: total_likes,
-      likes_avg: Number(avg_likes),
-      total_posts: user.data.counts.media,
-      engagement_avg: Number(engagement_avg),
-      comments_total: this.formatNum(total_comments),
-      comments_avg: this.formatNum(Number(avg_comments))
+  checkInstagramAuth = () => {
+    let path = window.location.hash,
+        local = localStorage.getItem('access_token')
+    path = path.split('=').pop()
+    if (local || path.length > 0) {
+      if (local) {
+        this.access_token = local
+        this.authenticated = true
+      } else {
+        this.access_token = path
+        this.authenticated = true
+        window.localStorage.setItem('access_token', path)
+      }
+      this.initializeStore()
+    } else {
+      this.authenticated = false
     }
-    return user_stats
+  }
+
+  getUserPostsInsta = async () => {
+    const url = `${this.api_url}/media/recent?access_token=${this.access_token}`
+    try {
+      const data = await fetch(url),
+            data_json = await data.json()
+      instagram.instagram_post_data = await data_json
+      if (await data_json) instagram.getTotalStats()
+      if (await data_json.meta.code === 400) this.authenticated = false
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  getUserDataInsta = async () => {
+    const url = `${this.api_url}?access_token=${this.access_token}`
+    try {
+      const data = await fetch(url)
+      const data_json = await data.json()
+      instagram.instagram_user_data = await data_json
+      if (await data_json.meta.code === 400) {
+        this.authenticated = false
+      }
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+  handleLogin = () => window.location.href = this.login_url
+
+  handleLogout = () => {
+    localStorage.clear()
+    this.authenticated = false
   }
 
   toggleInstaGrid = () => {

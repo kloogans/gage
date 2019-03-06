@@ -12,7 +12,7 @@ const App = observer(
   class App extends Component {
 
     componentDidMount() {
-      store.checkAuth()
+      store.checkInstagramAuth()
     }
 
     render() {

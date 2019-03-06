@@ -26,7 +26,7 @@ const InstaGrid = observer(
                            link={post.link} />
         })
         return (
-          <div className={store.toggle.grid ? 'insta-grid__container' : 'insta-grid__container'}>
+          <div className='insta-grid'>
             {images}
           </div>
         )

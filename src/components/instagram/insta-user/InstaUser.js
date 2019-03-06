@@ -28,7 +28,11 @@ const InstaUser = observer(props => {
               followers={store.formatNum(stats.followers)}
               following={store.formatNum(ig.counts.follows)} />
 
-          <EngagementBox rates={instagram.user_stats.engagement_avg} />
+          <EngagementBox
+              rates={instagram.user_stats.engagement_avg}
+              ratio={instagram.user_stats.ff_ratio}
+              averageLikes={store.formatNum(stats.likes_avg)}
+              averageComments={stats.comments_avg} />
 
           <InstaMediaCounts
               averageLikes={store.formatNum(stats.likes_avg)}

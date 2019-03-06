@@ -8,7 +8,7 @@
     position: relative;
     flex: 1;
     max-height: 200px;
-    animation: fade-in--up 0.8s ease;
+    animation: fade-in--up 0.6s ease;
     animation-fill-mode: both;
 
     @media (max-width: 399px) {
@@ -24,7 +24,7 @@
 
     @for $i from 1 through $total-images {
       &:nth-child(#{$i}) {
-        animation-delay: .1s * $i;
+        animation-delay: .02s * $i;
       }
     }
 

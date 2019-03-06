@@ -3,7 +3,7 @@ import React from 'react'
 const InstaUserCounts = props => (
   <ul className='insta-user-counts'>
     <li className='insta-user-counts__count'>
-      <p className='text text--small'>
+      <p className='text text--x-small'>
         Posts
       </p>
       <p className='text text--medium-small text__weight--x-heavy text__shade--light'>
@@ -11,7 +11,7 @@ const InstaUserCounts = props => (
       </p>
     </li>
     <li className='insta-user-counts__count'>
-      <p className='text text--small'>
+      <p className='text text--x-small'>
         Followers
       </p>
       <p className='text text--medium-small text__weight--x-heavy text__shade--light'>
@@ -19,7 +19,7 @@ const InstaUserCounts = props => (
       </p>
     </li>
     <li className='insta-user-counts__count'>
-      <p className='text text--small'>
+      <p className='text text--x-small'>
         Following
       </p>
       <p className='text text--medium-small text__weight--x-heavy text__shade--light'>

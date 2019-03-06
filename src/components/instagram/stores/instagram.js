@@ -20,59 +20,36 @@ class Instagram {
     global_percent: 0
   }
 
-  api_url = 'https://api.instagram.com/v1/users/self'
-  login_url = `https://api.instagram.com/oauth/authorize/?client_id=a7153eba4b3e4e89959df66a7d3a13b9&redirect_uri=http://localhost:3001/callback&response_type=token`
+  getUserTotals = (posts, user) => {
+    const following = user.data.counts.follows,
+          followers = user.data.counts.followed_by
+    let likes = 0,
+        comments = 0
 
-  checkInstagramAuth = () => {
-    let path = window.location.hash,
-        local = localStorage.getItem('access_token')
-    path = path.split('=').pop()
-    if (local || path.length > 0) {
-      if (local) {
-        store.access_token = local
-        store.authenticated = true
-      } else {
-        store.access_token = path
-        store.authenticated = true
-        window.localStorage.setItem('access_token', path)
-      }
-      this.initializeStore()
-    } else {
-      store.authenticated = false
+    posts.map(post => {
+      likes += post.likes.count
+      comments += post.comments.count
+      return null
+    })
+
+    const avg_likes = (likes / posts.length).toFixed(0),
+          avg_comments = (comments / posts.length).toFixed(0),
+          total_likes = likes,
+          total_comments = comments,
+          engagement_avg = (((avg_likes + avg_comments) / followers) * 0.1).toFixed(2)
+
+    const user_stats = {
+      following: following,
+      followers: followers,
+      ff_ratio: (followers / following).toFixed(2),
+      likes_total: total_likes,
+      likes_avg: Number(avg_likes),
+      total_posts: user.data.counts.media,
+      engagement_avg: Number(engagement_avg),
+      comments_total: store.formatNum(total_comments),
+      comments_avg: store.formatNum(Number(avg_comments))
     }
-  }
-
-  initializeStore() {
-    this.getUserPostsInsta()
-    this.getUserDataInsta()
-  }
-
-
-  getUserPostsInsta = async () => {
-    const url = `${this.api_url}/media/recent?access_token=${store.access_token}`
-    try {
-      const data = await fetch(url),
-            data_json = await data.json()
-      this.instagram_post_data = await data_json
-      if (await data_json) this.getTotalStats()
-      if (await data_json.meta.code === 400) store.authenticated = false
-    } catch(e) {
-      console.error(e)
-    }
-  }
-
-  getUserDataInsta = async () => {
-    const url = `${this.api_url}?access_token=${store.access_token}`
-    try {
-      const data = await fetch(url)
-      const data_json = await data.json()
-      this.instagram_user_data = await data_json
-      if (await data_json.meta.code === 400) {
-        store.authenticated = false
-      }
-    } catch(e) {
-      console.error(e)
-    }
+    return user_stats
   }
 
   getTotalStats = () => {
@@ -81,15 +58,8 @@ class Instagram {
             data_posts = data.data,
             user = mobx.toJS(this.instagram_user_data)
 
-      this.user_stats = store.getUserTotals(data_posts, user)
+      this.user_stats = this.getUserTotals(data_posts, user)
     }
-  }
-
-  handleLogin = () => window.location.href = this.login_url
-
-  handleLogout = () => {
-    localStorage.clear()
-    store.authenticated = false
   }
 }
 
@@ -101,6 +71,7 @@ decorate(Instagram, {
   instagram_user_data: observable,
   handleLogin: action,
   handleLogout: action,
+  getUserTotals: action,
   initializeStoreData: action
 })
 

@@ -3,10 +3,7 @@
 @import './grid-item/grid-item';
 
 .insta-grid {
-
-  &__container {
-    @include flex(row, center, center);
-    width: 100%;
-    flex-wrap: wrap;
-  }
+  @include flex(row, center, center);
+  width: 100%;
+  flex-wrap: wrap;
 }

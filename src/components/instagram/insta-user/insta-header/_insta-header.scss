@@ -5,12 +5,12 @@
   padding: 15px 0;
 
   &__image-wrapper {
-    @include size(100px, 100px);
+    @include size(88px, 88px);
     border-radius: 50%;
     overflow: hidden;
 
     img {
-      @include size(102px, 102px);
+      @include size(90px, 90px);
     }
   }
 
