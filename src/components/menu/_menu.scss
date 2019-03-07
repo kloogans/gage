@@ -14,13 +14,10 @@
     @include size(100%, 100%);
     position: relative;
     max-width: 768px;
-    background: linear-gradient(-130deg, $blue, $pink);
-    background-size: 280% 130%;
+    background: white;
+    // background: linear-gradient(-130deg, $blue, $pink);
+    // background-size: 280% 130%;
     color: white;
-
-    @media (min-width: 769px) {
-      background: white;
-    }
   }
 
   &__top-bar {
@@ -39,17 +36,13 @@
   }
 
   &__button--close {
-    color: white;
+    color: $black;
     font-size: 1.2rem;
     transition: all 0.3s ease;
 
     &:focus,
     &:hover {
       transform: scale(1.1);
-    }
-
-    @media (min-width: 769px) {
-      color: $black;
     }
   }
 
@@ -62,7 +55,7 @@
     font-family: $font-family--main;
     font-size: 2rem;
     font-weight: $font--thick;
-    color: white;
+    color: $black;
     text-transform: lowercase;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -71,10 +64,6 @@
     &:hover {
       border-color: $blue;
       color: $blue;
-    }
-
-    @media (min-width: 769px) {
-      color: $black;
     }
   }
 }
