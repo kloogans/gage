@@ -15,7 +15,7 @@ const Instagram = observer(
     }
 
     render() {
-      if (!instagram.instagram_post_data && instagram.instagram_user_data) {
+      if (instagram.instagram_post_data && instagram.instagram_user_data) {
         return (
           <div className='instagram animate__fade-in'>
             <NavTabs />
