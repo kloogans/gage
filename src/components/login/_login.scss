@@ -10,14 +10,46 @@
   left: 0;
   background: linear-gradient(130deg, rgb(1, 225, 255) 0%, rgb(255, 1, 138) 100%);
   background-size: 500% 100%;
-  animation: warpedBackground 30s ease infinite;
+  animation: movingGradient 30s ease infinite;
   z-index: 50;
 
   &__logo {
-    margin-top: 0;
+    margin: 0;
     font-family: $font-family--display;
     color: white;
     font-size: 4rem;
+  }
+
+  &__tagline {
+    // padding: 10px 0;
+  }
+
+  &__speedometer {
+    position: absolute;
+    bottom: 0;
+    right: -20%;
+    fill: white;
+    opacity: 0.25;
+    background-color: white;
+    mix-blend-mode: soft-light;
+    background: url('/icons/speedometer.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+      @include flex(column, flex-end, center);
+      background-position: right;
+      right: 0%;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__button {
@@ -36,11 +68,19 @@
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    z-index: 2;
 
     &:focus,
     &:hover {
       color: rgb(1, 225, 255);
       border-color: rgb(1, 225, 255);
+    }
+
+    p {
+      padding-left: 10px;
+      margin: 0;
+      font-weight: 600;
+      transform: translateY(-1px);
     }
   }
 }

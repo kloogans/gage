@@ -18,11 +18,15 @@ import store from '../../../../stores/store'
             <div className='analytics-interactions'>
               <p>
                 <i className='fas fa-heart' />
-                &nbsp;<span>{store.formatNum(item.likes)}</span>
+                &nbsp;<span className='text text--white text--small'>
+                  {store.formatNum(item.likes)}
+                </span>
               </p>
               <p>
                 <i className='fas fa-comment' />
-                &nbsp;<span>{item.comments}</span>
+                &nbsp;<span className='text text--white text--small'>
+                  {item.comments}
+                </span>
               </p>
             </div>
           </div>

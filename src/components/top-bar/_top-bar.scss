@@ -1,22 +1,19 @@
 .top-bar {
   @include flex(row, center, center);
   @include size(100%, 50px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 20px;
+  // padding: 0 20px;
   box-sizing: border-box;
   background-color: white;
   z-index: 20;
 
   @media (max-width: 768px) {
-    padding: 0 7px
+    padding: 0 10px
   }
 
   &__inner {
     @include flex(row, space-between, center);
     width: 100%;
-    max-width: 768px;
+    max-width: 1000px;
   }
 
   &__logo {
@@ -33,6 +30,7 @@
   &__button {
     color: $black;
     font-size: 1.1rem;
+    padding: 0;
     transform-origin: center;
     transition: all 0.3s ease;
 

@@ -23,13 +23,13 @@ const EngagementBox = observer(props => {
       </li>
       <li className='engagement-box__grid-item'>
         <p className='text text--x-small text--white'>
-          Average Likes
+          Avg Likes
         </p>
         <p className='engagement-box__rate'>{props.averageLikes}</p>
       </li>
       <li className='engagement-box__grid-item'>
         <p className='text text--x-small text--white'>
-          Average Comments
+          Avg Comments
         </p>
         <p className='engagement-box__rate'>{props.averageComments}</p>
       </li>

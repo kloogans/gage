@@ -39,14 +39,13 @@ body,
   &__inner {
     @include flex(column, center, center);
     @include size(100%, 100%);
-    max-width: 768px;
+    max-width: 1000px;
     overflow-y: hidden;
   }
 
   &__content {
     @include flex(column, center, center);
     @include size(100%, 100%);
-    padding-top: 50px;
   }
 
   &__section {

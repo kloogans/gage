@@ -32,6 +32,14 @@
     font-size: 2.5rem;
     font-weight: $font--thin;
     letter-spacing: -1px;
+
+    @media (max-height: 600px) {
+      font-size: 1.7rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 3.5rem;
+    }
   }
 
   &__grid {
@@ -45,9 +53,8 @@
 
   &__grid-item {
     @include flex(column, center, center);
-    flex-grow: 1;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
 
     &:first-child {
       border-right: 1px solid transparentize(white, 0.5);

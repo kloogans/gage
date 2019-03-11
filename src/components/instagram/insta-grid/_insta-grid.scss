@@ -3,8 +3,16 @@
 @import './grid-item/grid-item';
 
 .insta-grid {
-  @include flex(row, center, center);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
-  flex-wrap: wrap;
   overflow-y: auto;
+
+  @media (min-width: 769px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (orientation: landscape) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

@@ -13,10 +13,8 @@
     @include flex(column, center, center);
     @include size(100%, 100%);
     position: relative;
-    max-width: 768px;
+    max-width: 1000px;
     background: white;
-    // background: linear-gradient(-130deg, $blue, $pink);
-    // background-size: 280% 130%;
     color: white;
   }
 
@@ -26,12 +24,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0 20px;
     box-sizing: border-box;
     z-index: 30;
 
     @media (max-width: 768px) {
-      padding: 0 7px
+      padding: 0 10px
     }
   }
 
