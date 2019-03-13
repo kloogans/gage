@@ -27,11 +27,6 @@ class Store {
   initializeStore() {
     this.getUserPostsInsta()
     this.getUserDataInsta()
-
-    // setInterval(() => {
-    //   this.getUserPostsInsta()
-    //   this.getUserDataInsta()
-    // }, 60000)
   }
 
   checkInstagramAuth = () => {

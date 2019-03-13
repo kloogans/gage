@@ -27,7 +27,6 @@ const App = observer(
                 <main className='app__content'>
                   <Route exact path='/'
                          component={store.authenticated ? Instagram : Login} />
-
                 </main>
               </div>
             </div>

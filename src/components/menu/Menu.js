@@ -3,7 +3,6 @@ import { observer } from 'mobx-react'
 import store from '../../stores/store'
 
 const Menu = observer(() => {
-  const handleLogoutAll = () => store.handleLogout()
   return (
     <div className={store.toggle.menu ? 'menu__wrapper animate__fade-in': 'app--remove'}>
       <div className='menu__inner'>
@@ -12,7 +11,7 @@ const Menu = observer(() => {
             <i className='fas fa-times' />
           </button>
         </div>
-        <button className='menu__button' onClick={handleLogoutAll}>
+        <button className='menu__button' onClick={store.handleLogout}>
           Logout
         </button>
       </div>
