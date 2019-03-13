@@ -1,7 +1,6 @@
 .top-bar {
   @include flex(row, center, center);
   @include size(100%, 50px);
-  // padding: 0 20px;
   box-sizing: border-box;
   background-color: white;
   z-index: 20;
