@@ -26,11 +26,11 @@ const InstaGrid = observer(() => {
           })
 
     return (
-      <div style={ style } className='app__section'>
+      <section style={ style } className='app__section'>
         <div className='insta-grid'>
           {grid_items}
         </div>
-      </div>
+      </section>
     )
   } else {
     return <Loader />

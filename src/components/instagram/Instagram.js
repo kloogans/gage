@@ -17,13 +17,13 @@ const Instagram = observer(
     render() {
       if (instagram.instagram_post_data && instagram.instagram_user_data) {
         return (
-          <div className='instagram animate__fade-in'>
+          <section className='instagram animate__fade-in'>
             <NavTabs />
             <div className='instagram__content'>
               <InstaUser />
               <InstaGrid />
             </div>
-          </div>
+          </section>
         )
       } else {
         return <Loader />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { Router, Route } from 'react-router-dom'
+import { checkInstagramAuth } from './actions/authActions'
 import store from './stores/store'
 import TopBar from './components/top-bar/TopBar'
 import Instagram from './components/instagram/Instagram'
@@ -13,7 +14,7 @@ const App = observer(
   class App extends Component {
 
     componentDidMount() {
-      store.checkInstagramAuth()
+      checkInstagramAuth()
     }
 
     render() {

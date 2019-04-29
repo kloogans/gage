@@ -6,6 +6,7 @@ import InstaMediaCounts from './insta-media-counts/InstaMediaCounts'
 import instagram from '../stores/instagram'
 import { observer } from 'mobx-react'
 import store from '../../../stores/store'
+import { formatNum } from '../../../actions/utilityActions'
 
 const InstaUser = observer(props => {
 
@@ -19,7 +20,7 @@ const InstaUser = observer(props => {
           stats = instagram.user_stats
 
     return (
-      <div style={style} className='app__section'>
+      <section style={style} className='app__section'>
 
         <InstaHeader
             img={ig.profile_picture}
@@ -30,24 +31,24 @@ const InstaUser = observer(props => {
 
           <InstaUserCounts
               posts={ig.counts.media}
-              followers={store.formatNum(stats.followers)}
-              following={store.formatNum(ig.counts.follows)} />
+              followers={formatNum(stats.followers)}
+              following={formatNum(ig.counts.follows)} />
 
           <EngagementBox
               rates={instagram.user_stats.engagement_avg}
               ratio={instagram.user_stats.ff_ratio}
-              averageLikes={store.formatNum(stats.likes_avg)}
+              averageLikes={formatNum(stats.likes_avg)}
               averageComments={stats.comments_avg} />
 
           <InstaMediaCounts
-              averageLikes={store.formatNum(stats.likes_avg)}
-              totalLikes={store.formatNum(stats.likes_total)}
+              averageLikes={formatNum(stats.likes_avg)}
+              totalLikes={formatNum(stats.likes_total)}
               averageComments={stats.comments_avg}
               totalComments={stats.comments_total} />
 
 
         </div>
-      </div>
+      </section>
     )
   } else {
     return 'Loading...'

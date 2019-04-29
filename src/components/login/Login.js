@@ -1,6 +1,6 @@
 import React from 'react'
-import store from '../../stores/store'
 import Footer from '../footer/Footer'
+import { handleLogin } from '../../actions/authActions'
 
 const Login = () => (
   <div className='login'>
@@ -8,7 +8,7 @@ const Login = () => (
     <h2 className='login__tagline text text--small text--white'>
       instant engagement insights
     </h2>
-    <button onClick={store.handleLogin}
+    <button onClick={handleLogin}
             className='login__button'
             title='Login with Instagram'>
       <i className='fab fa-instagram' />

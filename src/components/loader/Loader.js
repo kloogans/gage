@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Loader = () => (
-    <div className='loader animate__fade-in'>
+    <section className='loader animate__fade-in'>
       <div className='loader__shapes'>
 	      <div className='loader__shape' />
 	      <div className='loader__shape' />
@@ -19,7 +19,7 @@ const Loader = () => (
 		      </filter>
 	      </defs>
       </svg>
-    </div>
+    </section>
 )
 
 export default Loader

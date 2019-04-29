@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import store from '../../../../stores/store'
+import { formatNum } from '../../../../actions/utilityActions'
 
   class GridItem extends Component {
 
@@ -19,7 +19,7 @@ import store from '../../../../stores/store'
               <p>
                 <i className='fas fa-heart' />
                 &nbsp;<span className='text text--white text--small'>
-                  {store.formatNum(item.likes)}
+                  {formatNum(item.likes)}
                 </span>
               </p>
               <p>
